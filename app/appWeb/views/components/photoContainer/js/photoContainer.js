@@ -206,6 +206,11 @@ class PhotoContainer {
 					success: (result) => spinnerModal.completeSpinner(() => {
 						if (this.categoryUpdateCallback) {
 							this.categoryUpdateCallback(result.categoryId);
+							// Do not delete these sentences this resolved the refresh error on map in formMap
+							if(window.formMap) {
+								google.maps.event.trigger(window.formMap.map, "resize");
+								window.formMap.setPosition();
+							}
 						}
 					}),
 					error: (err) => {
@@ -220,6 +225,7 @@ class PhotoContainer {
 			// 7. Enable post button when image upload success
 			this.$postAdButton.toggleClass("disabled", false);
 			window.BOLT.trackEvents({"event": this.pageType + "PhotoSuccess"});
+			
 		};
 	}
 
