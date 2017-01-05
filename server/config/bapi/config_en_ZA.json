@@ -362,10 +362,10 @@
 		},
 		"VIP": {
 			"desktop": {
-				"models": ["advert", "keywords", "safetyTips", "seo"]
+				"models": ["advert", "keywords", "locationlatlong", "safetyTips", "seo"]
 			},
 			"mobile": {
-				"models": ["advert", "keywords", "safetyTips", "seo"]
+				"models": ["advert", "keywords", "locationlatlong", "safetyTips", "seo"]
 			}
 		}
 	}

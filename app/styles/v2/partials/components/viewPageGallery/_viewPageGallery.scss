@@ -78,7 +78,7 @@
 @include to-breakpoint($small-break){
 	.post-ad-header{
 		margin-top: -1em;
-		.header-back a{
+		.header-back-page a{
 			position: relative;
 			top: -3.5px;
 		}
@@ -121,6 +121,9 @@
 			max-width: none;
 			height: 1000px;
 		}
+	}
+	.container.messaging {
+		padding-top: 20px;
 	}
 	#vipOverlay{
 		display: none;
@@ -268,7 +271,7 @@
 			margin-bottom: 20px;
 			width: 90%;
 		}
-		.price{
+		.price-update {
 			margin-top: -15px;
 			margin-bottom: 5px;
 		}
@@ -311,13 +314,13 @@
 			margin: 8px 3px 3px 3px;
 		}
 	}
-	.modal > .modal-container {
-		max-width: 40em;
-	}
 	#vipOverlay{
 		.counter{
 			bottom: 8.5em;
 			right: 2em;
+		}
+		.modal-container {
+			max-width: 40em;
 		}
 		&> .modal-container > .modal-close-section{
 			position: absolute;
@@ -342,7 +345,7 @@
 	.slider-mobile-for{
 		width: 100%;
 		img {
-			object-fit: cover;
+			object-fit: contain;
 			height: 320px;
 			margin: 0 auto;
 		}

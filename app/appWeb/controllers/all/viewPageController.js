@@ -20,33 +20,25 @@ let VIP = {
     	let difference = expired - today;
 		let daysLeft = Math.floor(difference / 86400000);
 
-		let redirectUrl;
-		if(modelData.advert.statusInfo.statusReason === 'DELETED__USER__DELETED' || modelData.advert.statusInfo.statusReason === 'DELETED__SYSTEM__TIMEDOUT' ) {
-			if(daysLeft > 60) {
+		let redirectUrl = null;
+		if (typeof modelData.advert.statusInfo !== 'undefined') {
+			if (modelData.advert.statusInfo.statusReason === 'DELETED__USER__DELETED' || modelData.advert.statusInfo.statusReason === 'DELETED__SYSTEM__TIMEDOUT') {
+				if (daysLeft > 60) {
+					redirectUrl = '/?status=adInactive';
+				}
+			} else if (modelData.advert.statusInfo.statusReason === 'DELETED__ADMIN__DELETED') {
+				redirectUrl = '410';
+			} else if (modelData.advert.statusInfo.statusReason === 'BLOCKED__TNS__CHECKED' || modelData.advert.statusInfo.statusReason === 'DELAYED__TNS__CHECKED') {
 				redirectUrl = '/?status=adInactive';
-				return redirectUrl;
+			} else if (modelData.advert.statusInfo.status === 'PENDING' && (modelData.advert.statusInfo.statusReason === 'PENDING__ADMIN__CONFIRMED' || modelData.advert.statusInfo.statusReason === 'PENDING__USER__CONFIRMED' || modelData.advert.statusInfo.statusReason === 'PENDING__USER__UPDATED' || modelData.advert.statusInfo.statusReason === 'PENDING__USER__REPOSTED' )) {
+				if (daysLeft > 60) {
+					redirectUrl = '/?status=adPending';
+				}
 			}
 		}
-
-		if(modelData.advert.statusInfo.statusReason === 'DELETED__ADMIN__DELETED') {
-			redirectUrl = '410';
-			return redirectUrl;
-		}
-
-		if(modelData.advert.statusInfo.statusReason === 'BLOCKED__TNS__CHECKED' || modelData.advert.statusInfo.statusReason === 'DELAYED__TNS__CHECKED') {
-			redirectUrl = '/?status=adInactive';
-			return redirectUrl;
-		}
-
-		if(modelData.advert.statusInfo.status === 'PENDING' && (modelData.advert.statusInfo.statusReason === 'PENDING__ADMIN__CONFIRMED' || modelData.advert.statusInfo.statusReason === 'PENDING__USER__CONFIRMED' || modelData.advert.statusInfo.statusReason === 'PENDING__USER__UPDATED' || modelData.advert.statusInfo.statusReason === 'PENDING__USER__REPOSTED' )) {
-			if(daysLeft > 60) {
-				redirectUrl = '/?status=adPending';
-				return redirectUrl;
-			}
-		}
-
-		return null;
+		return redirectUrl;
 	},
+
 	extendHeaderData: (req, modelData) => {
 		// SEO
 		modelData.header.pageType = modelData.pagename;
@@ -67,7 +59,9 @@ let VIP = {
 			modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/ViewPage.css');
 		}
 	},
+
 	buildHeaderPageMessages: (query, modelData) => {
+		modelData.header.messagingFlag = false;
 		modelData.header.pageMessages = {};
 		if (typeof query !== 'object') {
 			let queryObj = {};
@@ -78,32 +72,85 @@ let VIP = {
 			});
 			query = queryObj;
 		}
-		// Switch on status
-		if (typeof query.status !== 'undefined') {
-			switch (query.status) {
-				case 'adInactive':
-					modelData.header.pageMessages.success = 'home.ad.notyetactive';
+
+		// Switch on activateStatus
+		if (typeof query.activateStatus !== 'undefined') {
+			modelData.header.messagingFlag = true;
+			switch (query.activateStatus) {
+				case 'pendingAdActivateSuccess':
+					if (modelData.advert.statusInfo && modelData.advert.statusInfo.status === 'ACTIVE') {
+						modelData.header.pageMessages.success = 'vip.headerMessage.success';
+					} else {
+						modelData.header.pageMessages.success = 'vip.headerMessage.successNotYetActive';
+					}
+					break;
+				case 'adAlreadyActivated':
+					modelData.header.pageMessages.warning = 'vip.headerMessage.alreadyActivated';
+					break;
+				case 'adFlagged':
+					modelData.header.pageMessages.success = 'vip.headerMessage.flagged';
+					break;
+				case 'adReposted':
+					modelData.header.pageMessages.success = 'vip.headerMessage.repostSuccess';
+					break;
+				case 'adActivateSuccessWithIFPayment':
+					modelData.header.pageMessages.success = 'vip.headerMessage.paymentForInsertionFeeSuccess';
+					break;
+				case 'adActivateSuccessWithPendingPayment':
+					modelData.header.pageMessages.success = 'vip.headerMessage.paymentForFeaturePending';
+					break;
+				case 'adActivateSuccessWithPayment':
+					modelData.header.pageMessages.success = 'vip.headerMessage.paymentForActivateSuccess';
+					break;
+				case 'adEditedWithPayment':
+				case 'adRepostedWithPayment':
+					modelData.header.pageMessages.success = 'vip.headerMessage.paymentForFeatureSuccessEditRepost';
+					break;
+				case 'adFeaturePaymentSuccess':
+					modelData.header.pageMessages.success = 'vip.headerMessage.paymentForFeatureSuccess';
 					break;
 				default:
 					modelData.header.pageMessages.success = '';
+					modelData.header.pageMessages.warning = '';
 					modelData.header.pageMessages.error = '';
 			}
 		}
+
 		// Switch on resumeAbandonedOrderError
 		if (typeof query.resumeAbandonedOrderError !== 'undefined') {
+			modelData.header.messagingFlag = true;
 			switch (query.resumeAbandonedOrderError) {
 				case 'adFeaturePaid':
 					modelData.header.pageMessages.success = 'abandonedorder.adFeaturePaid.one_ad';
 					break;
 				default:
 					modelData.header.pageMessages.success = '';
+					modelData.header.pageMessages.warning = '';
 					modelData.header.pageMessages.error = '';
 			}
 		}
-		// Not switch on activateStatus when they are handled by post overlay. Other cases should still go here.
+
+		// Switch on replyStatus
+		if (typeof query.replyStatus !== 'undefined') {
+			modelData.header.messagingFlag = true;
+			switch (query.replyStatus) {
+				case 'serverError':
+					modelData.header.pageMessages.error = 'vip.reply.error.server';
+					break;
+				case 'validationError':
+					modelData.header.pageMessages.error = 'vip.reply.error.validation';
+					break;
+				default:
+					modelData.header.pageMessages.success = '';
+					modelData.header.pageMessages.warning = '';
+					modelData.header.pageMessages.error = '';
+			}
+		}
 	},
+
 	extendFooterData: (req, modelData) => {
 		// JS
+		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'HomePageV2Legacy.min.js');
 		if (!modelData.footer.min) {
 			if (modelData.header.enableLighterVersionForMobile) {
 				modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + `ViewPage_desktop_${modelData.locale}.js`);
@@ -117,7 +164,6 @@ let VIP = {
 				modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + `ViewPage_mobile_${modelData.locale}.js`);
 			}
 		}
-		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'HomePageV2Legacy.min.js');
 		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'AnalyticsLegacyBundle.min.js');
 		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'Zoom.min.js');
 	}
@@ -147,6 +193,11 @@ router.get('/:id?', (req, res, next) => {
 	// If no adId, redirect to homepage.
 	if (adId === undefined) {
 		res.redirect('/');
+		return;
+	}
+	if (adId === "preloader.gif") {
+		console.warn('This adId is not a number');
+		next();
 		return;
 	}
 

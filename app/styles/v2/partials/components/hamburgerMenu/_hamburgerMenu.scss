@@ -65,7 +65,7 @@
 
 	.js-post-button.btn-wrapper {
 		.btn {
-			@include vivaBtn(on, 0.445em 0, 100%);
+			@include vivaBtn(on, 0.85em 0, 100%);
 
 			&.disabled {
 				opacity: 0.5;
@@ -82,10 +82,10 @@ $borderColor: $headerMenuItemSeparatorColor;
 		top: 18px;
 		right: 0;
 		&.icon-chevron-blue {
-			background-size: 1000%;
+			background-size: 1100%;
 		}
 		&.icon-up-blue {
-			background-size: 4800%;
+			background-size: 5340%;
 		}
 		width: 20px;
 		height: 20px;
@@ -107,6 +107,7 @@ $borderColor: $headerMenuItemSeparatorColor;
 
 	.category-name {
 		a {
+			color: $vivaBlack;
 			display: block;
 			height: 100%;
 			width: 100%;
@@ -137,7 +138,7 @@ $borderColor: $headerMenuItemSeparatorColor;
 			margin-left: 0;
 			width: 25px;
 			height: 25px;
-			background-size: 2750%;
+			background-size: 3095%;
 
 			&.icon-my-ads-active {
 				opacity: .3;
@@ -150,10 +151,10 @@ $borderColor: $headerMenuItemSeparatorColor;
 		.link-item {
 			padding: 15px;
 			@include to-breakpoint($small-break) {
-				font-size: 83%;
+				// font-size: 83%;
 			}
 		}
-		
+
 	}
 }
 

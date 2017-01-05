@@ -16,6 +16,7 @@
 				<input title="{{i18n "postAd.mainDetails.title"}}" maxlength="100" data-schema="data.title" name="Title" type="text" value="{{this.adResult.title}}"/>
 			</div>
 		</div>
+		<div class="price-attribute-info hidden">{{json this.priceAttribute}}</div>
 		<div class="form-ad-price form-field optional-field {{#unless this.priceAttribute}}hidden{{/unless}}">
 			<div class="label-wrapper">
 				<label for="amount">{{i18n "editAd.mainDetails.labels.price"}}</label>

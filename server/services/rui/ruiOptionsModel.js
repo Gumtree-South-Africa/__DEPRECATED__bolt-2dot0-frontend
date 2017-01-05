@@ -14,23 +14,26 @@ let initFromConfig = function(config, initDefaults) {
 
 	ruiOptions.hostname = 'www.' + ruiOptions.replyHost;
 
-	let configHost = config.get('RUI.server.host');
-	let configUseBasedomainsuffix = config.get('RUI.server.useBasedomainsuffix');
-	if (configUseBasedomainsuffix === true) {
-		ruiOptions.hostname = ruiOptions.hostname + ruiOptions.replyBasedomainSuffix;
-	} else {
-		if (configHost !== '') {
-			ruiOptions.hostname = ruiOptions.hostname + '.' + configHost;
+	let configServer = config.get('RUI.server');
+	if (typeof configServer !== 'undefined') {
+		let configHost = configServer.host;
+		let configUseBasedomainsuffix = configServer.useBasedomainsuffix;
+		if (configUseBasedomainsuffix === true) {
+			ruiOptions.hostname = ruiOptions.hostname + ruiOptions.replyBasedomainSuffix;
+		} else {
+			if (configHost !== '') {
+				ruiOptions.hostname = ruiOptions.hostname + '.' + configHost;
+			}
 		}
+
+		ruiOptions.protocol = configServer.protocol;
+		ruiOptions.port = configServer.port;
+		ruiOptions.parameters = configServer.parameters;
+		ruiOptions.timeout = ruiOptions.timeout !== undefined ? ruiOptions.timeout : configServer.timeout;
+		ruiOptions.useProxy = typeof configServer.useProxy !== 'undefined' ? config.get('RUI.server.useProxy') : false;
+
+		ruiOptions.rejectUnauthorized = false;
 	}
-
-	ruiOptions.protocol = config.get('RUI.server.protocol');
-	ruiOptions.port = config.get('RUI.server.port');
-	ruiOptions.parameters = config.get('RUI.server.parameters');
-	ruiOptions.timeout = (ruiOptions.timeout !== undefined) ? ruiOptions.timeout : config.get('RUI.server.timeout');
-	ruiOptions.useProxy = config.get('RUI.server.useProxy');
-
-	ruiOptions.rejectUnauthorized = false;
 
 	return ruiOptions;
 };

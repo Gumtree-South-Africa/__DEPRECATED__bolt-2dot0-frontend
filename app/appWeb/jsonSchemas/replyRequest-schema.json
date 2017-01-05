@@ -29,7 +29,6 @@
 		},
 		"isSendMeCopyEmail": {
 			"type": "string",
-			"enum": ["true", "false"],
 			"required": false
 		},
 		"replyMessage": {

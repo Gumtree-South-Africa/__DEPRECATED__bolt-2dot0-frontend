@@ -67,7 +67,16 @@ function showPostOverlayIfNeeded() {
 
 
 let initialize = () => {
+	$('.header-back-page').removeClass('hidden');
+	$('.header-back-component').addClass('hidden');
+
 	viewPageGallery.initialize(constImgLength);
+
+	let messagingFlag = $('.messaging-flag').val();
+	if (messagingFlag === 'true') {
+		$('.container').addClass('messaging');
+	}
+
 	showPostOverlayIfNeeded();
 };
 

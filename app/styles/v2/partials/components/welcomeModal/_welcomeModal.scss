@@ -101,18 +101,15 @@
     display: inline-block;
     height: 40px;
     width: 30%;
+    margin: 0 1%;
 
     &:only-child {
 		text-align: left;
-        width: 100%;
+        width: 44%;
 
 		a {
 			padding: 0 20px;
 		}
-    }
-
-    + .stickyBtn {
-        margin-left: 5%;
     }
 
     a{

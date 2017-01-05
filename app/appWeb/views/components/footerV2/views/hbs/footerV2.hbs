@@ -8,8 +8,11 @@
 {{#compare this.header.pageType '===' 'HomepageV2'}}
 <div class="seo-background">
 	<div class="seo-wrapper">
-        {{> (dynamic "topSearches") homePageUrl=this.header.homePageUrl}}
-        {{> (dynamic "topLocations") homePageUrl=this.header.homePageUrl}}
+		{{> (dynamic "topSearches") homePageUrl=this.header.homePageUrl}}
+		{{> (dynamic "topLocations") homePageUrl=this.header.homePageUrl}}
+		{{#if this.topCategories}}
+			{{> (dynamic "topCategories")}}
+		{{/if}}
 	</div>
 </div>
 {{/compare}}
