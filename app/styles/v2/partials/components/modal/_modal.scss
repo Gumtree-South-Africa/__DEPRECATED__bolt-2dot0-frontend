@@ -75,6 +75,13 @@
       border: 1px solid blue;
       float: left;
     }
+	.icon-location-v2{
+		margin-right: 0.2em;
+		background-image: url("../../../../../svgsV2/#{$photoFolder}/location-v2.svg");
+		&:hover{
+			background-image: url("../../../../../svgsV2/#{$photoFolder}/location-v2-hover.svg");
+		}
+	}
   }
   input{
     border: transparent;
