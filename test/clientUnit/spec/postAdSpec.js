@@ -7,6 +7,7 @@ let specHelper = require('../helpers/commonSpecHelper.js');
 let loginModalController = require("app/appWeb/views/components/loginModal/js/loginModal.js");
 //let spinnerModalController = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
 let formMapController =require('app/appWeb/views/components/formMap/js/formMap.js');
+let formMapMock = require('../mockData/formMapMock.json');
 let postAdFormMainDetailsController = require("app/appWeb/views/components/postAdFormMainDetails/js/postAdFormMainDetails.js");
 
 let mockEpsResponse = 'VERSION:2;http://i.ebayimg.sandbox.ebay.com/00/s/ODAwWDM4Ng==/z/iYgAAOSwGvNXo388/$_1.JPG?set_id=8800005007';
@@ -35,6 +36,8 @@ let mockGetUrlParameters = () => {
 	};
 	$('html').attr('data-locale', 'es_MX');
 };
+
+
 mockGetUrlParameters();
 describe('Post Ad', () => {
 	beforeEach(() => {
@@ -253,13 +256,15 @@ describe('Post Ad', () => {
 	describe("formMap", () => {
 		let $testArea;
 		window.getUrlParameter(true);
+		
 		beforeEach(() => {
 			specHelper.mockGoogleLocationApi();
 			specHelper.mockWebshim();
-
-			$testArea = specHelper.setupTest('formMap', { formMap: {} }, 'es_MX');
+			$testArea = specHelper.setupTest('formMap', {googleMap: formMapMock.googleMapConfiguration}, 'es_MX');
 			formMapController.initialize();
+			window.formMap.configMap();
 		});
+
 		it('test if google api maps has been applied on object window.google', () => {
 			spyOn(window.google.maps, 'Map');
 			this.map = new google.maps.Map($(".map")[0], {
@@ -270,9 +275,64 @@ describe('Post Ad', () => {
 			expect(google.maps.Map).toHaveBeenCalled();
 		});
 
-		it("initialize and disable geolocate", () => {
-			let checkGeolocation = $testArea.find('#checkGeolocation');
-			expect(checkGeolocation.hasClass('toggle-input')).toBeTruthy('should be display checkbox control');
+		it("check if the area is loaded ", () => {
+			let switchRangeMarker = $testArea.find('#switchRangeMarker');
+			expect(switchRangeMarker.hasClass('toggle-input')).toBeTruthy('should be display checkbox control');
+
+			spyOn(window.formMap, 'setMark');
+			window.formMap.setMark();
+			expect(window.formMap.setMark).toHaveBeenCalled();
 		});
+
+		it("uses precise location ", () => {		
+			window.formMap.icons = {
+				fakeAd: "../../fakead.svg",
+				current: "../../current.svg"
+			};
+			let switchRangeMarker = $testArea.find('#switchRangeMarker');
+			window.formMap.enableComponents = true;
+			switchRangeMarker.prop('checked', 'checked');
+			window.formMap.setMark();
+			
+			expect(window.formMap.typeMark).toBeTruthy();
+		});
+
+		it("uses aproximate location ", () => {		
+			window.formMap.setMark();
+			expect(window.formMap.typeMark).toBeFalsy();
+		});
+
+		it("test geolocation ", () => {		
+			window.formMap.geolocate();
+			// send undefined object, the razon is the navigator object cannot be mocked, already that is protected.
+			expect(window.formMap.position).toBeUndefined();		
+			// mock position 
+			window.formMap.position = { lat: 19.3883633, lng: -99.1744249 };
+			window.formMap.setCurrentPosition();
+			expect(window.formMap.map).toBeDefined();	
+		});
+
+		it("get position of current view on map ", () => {		
+			let position = window.formMap.getPosition();
+			expect(position).toBeDefined();		
+		});
+
+		it("autocomplete test", () => {		
+			window.formMap.initAutocomplete();
+			expect(window.formMap.HtmlAutocomplete).toBeDefined();		
+		});
+
+		it("events in formMap ", () => {		
+			let switchRangeMarker = $testArea.find('#switchRangeMarker');
+			window.formMap.position = { lat: 19.3883633, lng: -99.1744249 };
+			switchRangeMarker.prop('checked', 'checked');		
+			window.formMap.setMark();
+			expect(window.formMap.typeMark).toBeFalsy();
+
+			// autocomplete on place_changed
+			$("#autocompleteTextBox").val('Polanco V Sección, Ciudad de México');
+			expect(window.formMap.position).toBeTruthy();
+		});
+
 	});
 });
