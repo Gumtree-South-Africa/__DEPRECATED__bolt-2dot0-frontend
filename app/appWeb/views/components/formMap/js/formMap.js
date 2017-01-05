@@ -20,12 +20,9 @@ class FormMap {
 		this.validationCoordinates = {};
 		this.useGeolocation;
 		this.meters = this.googleMap.sizeRadio;
-		this.icons = {
-			current: '/public/icons/map/location-current.svg',
-			fakeAd: '/public/icons/map/location-marker.svg'
-		};
 		this.typeMark = this.HtmlSwitchRangeMarker[0].checked;
 		this.enableComponents = false;
+		this.icons = this.googleMap.icons;
 		this.validateCountry = (coordinates) => {
 			return new Promise(function(success, reject) {
 				if (!coordinates) {
