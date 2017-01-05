@@ -119,7 +119,7 @@
        "viewSeoUrl": "/a-venta-camiones/coyoacan/ohodoq-ojdqjd/1001104658000910675400109",
        "title": "ohodoq ojdqjd",
        "description": "dqjdj jdpqojd",
-       "adPrice": {
+       "price": {
    				"priceType": "FIXED",
    				"currency": "MXN",
    				"amount": 535
@@ -154,7 +154,7 @@
        "viewSeoUrl": "/a-venta-terrenos/dr-pedro-r-bernabe/hdihojd-odqowdjoq/1001104657000910675400109",
        "title": "hdihojd odqowdjoq",
        "description": "djoiqjwodjq oidjoqjod odjoqwjdoq odjqojodwq",
-       "adPrice": {
+       "price": {
    				"priceType": "FIXED",
    				"currency": "MXN",
    				"amount": 535
@@ -174,7 +174,7 @@
        "viewSeoUrl": "/a-computadoras-electronica/tijuana/ad-from-bdd-redesign-2016+11+30-17-43-18/1001104645230910675400109",
        "title": "Ad from BDD redesign 2016-11-30 17:43:18",
        "description": "Ad from BDD redesign 2016-11-30 17:43:18. Anuncio publicado por riven en Tijuana. Categoría generada por Vivanuncios para este anuncio: Computadoras y electrónica",
-       "adPrice": {
+       "price": {
    				"priceType": "FIXED",
    				"currency": "MXN",
    				"amount": 535
@@ -193,7 +193,7 @@
        "viewSeoUrl": "/a-bebes-ninos-embarazadas/tijuana/ad-from-bdd-redesign-2016+11+30-17-29-32/1001104645200910675400109",
        "title": "Ad from BDD redesign 2016-11-30 17:29:32",
        "description": "Ad from BDD redesign 2016-11-30 17:29:32. Anuncio publicado por riven en Tijuana. Categoría generada por Vivanuncios para este anuncio: Bebés, niños, embarazadas",
-       "adPrice": {
+       "price": {
    				"priceType": "FIXED",
    				"currency": "MXN",
    				"amount": 535
@@ -218,7 +218,7 @@
        "viewSeoUrl": "/a-bebes-ninos-embarazadas/tijuana/ad-from-bdd-redesign-2016+11+30-17-08-30/1001104646210910675400109",
        "title": "Ad from BDD redesign 2016-11-30 17:08:30",
        "description": "Ad from BDD redesign 2016-11-30 17:08:30. Anuncio publicado por riven en Tijuana. Categoría generada por Vivanuncios para este anuncio: Bebés, niños, embarazadas",
-       "adPrice": {
+       "price": {
    				"priceType": "FIXED",
    				"currency": "MXN",
    				"amount": 535
@@ -253,7 +253,7 @@
        "viewSeoUrl": "/a-moda/cuauhtemoc/bbf2-+-anuncio-publicado-por-riven/1001104595060910675400109",
        "title": "bbf2 - Anuncio publicado por riven",
        "description": "kdn qwidoqhow",
-       "adPrice": {
+       "price": {
    				"priceType": "FIXED",
    				"currency": "MXN",
    				"amount": 535
@@ -278,7 +278,7 @@
        "viewSeoUrl": "/a-hogar/isla-mujeres/anuncio-publicado-por-riven/1001104595030910675400109",
        "title": "Anuncio publicado por riven",
        "description": "Anuncio publicado por riven en Isla Mujeres. Categoría generada por Vivanuncios para este anuncio: Hogar",
-       "adPrice": {
+       "price": {
    				"priceType": "FIXED",
    				"currency": "MXN",
    				"amount": 535

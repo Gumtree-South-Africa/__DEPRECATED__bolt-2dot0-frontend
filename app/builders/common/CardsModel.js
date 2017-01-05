@@ -114,7 +114,7 @@ class CardsModel {
 					id: ad.id,		// short id
 					adId: ad.adId,	// long id
 					title: ad.title,
-					adPrice: {
+					price: {
 						priceType: ad.priceType,
 						currency: ad.currency,
 						amount: ad.amount

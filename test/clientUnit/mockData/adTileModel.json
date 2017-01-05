@@ -4,7 +4,7 @@
 	"viewSeoUrl": "/a-venta-inmuebles/chimalli/hi-title/1001000001000910000000009",
 	"title": "Post House Ad from bapi at 2016-01-12 17:05:54.948",
 	"description": "Test description for Post AD for room WITH CAR LARGE  PICS with small ones too FOR SURE",
-	"adPrice": {
+	"price": {
 		"priceType": "FIXED",
 		"amount": 50000,
 		"currency": "MXN"

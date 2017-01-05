@@ -23,7 +23,7 @@
   "adInfo": {
     "adId": "100000000",
     "adTitle": "Post job ad",
-    "adPrice": {
+    "price": {
       "type": "FREE"
     }
   },

@@ -27,7 +27,7 @@
       "adInfo": {
         "adId": "100000000",
         "adTitle": "Post job ad",
-        "adPrice": {
+        "price": {
           "type": "FREE"
         }
       },
@@ -64,7 +64,7 @@
           "href": "/conversations/caiyuchen@ebay.com?conversationIds=2e:-d6wc1o:icwh3xfx",
           "method": "DELETE"
         }
-      ],      
+      ],
       "id": "2c:-d6wc1o:icwh3xfx",
       "role": "SELLER",
       "state": "CLOSE",
@@ -72,7 +72,7 @@
       "adInfo": {
         "adId": "100000000",
         "adTitle": "Post job ad",
-        "adPrice": {
+        "price": {
           "type": "FREE"
         }
       },

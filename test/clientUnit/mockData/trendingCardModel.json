@@ -26,7 +26,7 @@
 			"viewSeoUrl": "/a-venta-inmuebles/chimalli/hi-title/1001000001000910000000009",
 			"title": "Post House Ad from bapi at 2016-01-12 17:05:54.948",
 			"description": "Test description for Post AD for room WITH CAR LARGE  PICS with small ones too FOR SURE",
-			"adPrice": {
+			"price": {
 				"priceType": "FIXED",
 				"amount": 50000,
 				"currency": "MXN"
@@ -58,7 +58,7 @@
 			"viewSeoUrl": "/a-house-shares-flat-shares-offered/groblersdal/post-house-ad-from-bapi-at-2016+01+12-17-05-54-948/1001096096020910618300709",
 			"title": "Post House Ad from bapi at 2016-01-12 17:05:54.948",
 			"description": "Test description for Post AD for room WITH CAR LARGE  PICS with small ones too FOR SURE",
-			"adPrice": {
+			"price": {
 				"priceType": "FIXED",
 				"currency": "USD",
 				"amount": 50000
@@ -90,7 +90,7 @@
 			"viewSeoUrl": "/a-venta-autos/chihuahua-chih/nissan-march-sedan-2013/1001199965000910793745109",
 			"title": "Nissan March Sedán 2013",
 			"description": "Nissan March Sedán 2013",
-			"adPrice": {
+			"price": {
 				"priceType": "CONTACT_ME"
 			},
 			"pictures": [
@@ -120,7 +120,7 @@
 			"viewSeoUrl": "/a-venta-autos/chihuahua-chih/nissan-march-sedan-2013/1001199965000910793745109",
 			"title": "Nissan March Sedán 2013",
 			"description": "Nissan March Sedán 2013",
-			"adPrice": {
+			"price": {
 				"priceType": "CONTACT_ME"
 			},
 			"pictures": [

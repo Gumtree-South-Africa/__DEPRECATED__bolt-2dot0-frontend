@@ -16,7 +16,7 @@
 			"id": "100000000",
 			"adId": "1001000001000910000000009",
 			"title": "capiTest cars mx ads from capi 2",
-			"adPrice": {
+			"price": {
 				"priceType": "FIXED",
 				"currency": "MXN",
 				"amount": 535
@@ -33,7 +33,7 @@
 			"id": "200000000",
 			"adId": "2001000001000910000000009",
 			"title": "capiTest cars mx ads from capi",
-			"adPrice": {
+			"price": {
 				"priceType": "FIXED",
 				"currency": "MXN",
 				"amount": 535
@@ -50,7 +50,7 @@
 			"id": "300000000",
 			"adId": "3001000001000910000000009",
 			"title": "capiTest cars mx ads from capi",
-			"adPrice": {
+			"price": {
 				"priceType": "FIXED",
 				"currency": "MXN",
 				"amount": 535
@@ -67,7 +67,7 @@
 			"id": "400000000",
 			"adId": "4001000001000910000000009",
 			"title": "capiTest cars mx ads from capi",
-			"adPrice": {
+			"price": {
 				"priceType": "FIXED",
 				"currency": "MXN",
 				"amount": 535
@@ -84,7 +84,7 @@
 			"id": "500000000",
 			"adId": "5001000001000910000000009",
 			"title": "capiTest cars mx ads from capi",
-			"adPrice": {
+			"price": {
 				"priceType": "FIXED",
 				"currency": "MXN",
 				"amount": 535
@@ -101,7 +101,7 @@
 			"id": "600000000",
 			"adId": "6001000001000910000000009",
 			"title": "capiTest cars mx ads from capi",
-			"adPrice": {
+			"price": {
 				"priceType": "FIXED",
 				"currency": "MXN",
 				"amount": 535
@@ -118,7 +118,7 @@
 			"id": "700000000",
 			"adId": "7001000001000910000000009",
 			"title": "capiTest cars mx ads from capi",
-			"adPrice": {
+			"price": {
 				"priceType": "FIXED",
 				"currency": "MXN",
 				"amount": 535
@@ -135,7 +135,7 @@
 			"id": "800000000",
 			"adId": "8001000001000910000000009",
 			"title": "capiTest cars mx ads from capi",
-			"adPrice": {
+			"price": {
 				"priceType": "FIXED",
 				"currency": "MXN",
 				"amount": 535
@@ -152,7 +152,7 @@
 			"id": "900000000",
 			"adId": "9001000001000910000000009",
 			"title": "capiTest cars mx ads from capi",
-			"adPrice": {
+			"price": {
 				"priceType": "FIXED",
 				"currency": "MXN",
 				"amount": 535
@@ -169,7 +169,7 @@
 			"id": "000000000",
 			"adId": "0001000001000910000000009",
 			"title": "capiTest cars mx ads from capi",
-			"adPrice": {
+			"price": {
 				"priceType": "FIXED",
 				"currency": "MXN",
 				"amount": 535

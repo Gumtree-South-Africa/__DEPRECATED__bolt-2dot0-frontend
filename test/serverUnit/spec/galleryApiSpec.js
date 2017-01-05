@@ -33,9 +33,9 @@ describe('Gallery Ad Api', () => {
 
 						// make sure the ads are transformed into the new format, and the card config is present
 						expect(jsonResult.config.cardName).toBe("galleryCard");
-						expect(jsonResult.ads[0].adPrice.priceType).toBe(responseFile.ads[0].priceType);
-						expect(jsonResult.ads[0].adPrice.currency).toBe(responseFile.ads[0].currency);
-						expect(jsonResult.ads[0].adPrice.amount).toBe(responseFile.ads[0].amount);
+						expect(jsonResult.ads[0].price.priceType).toBe(responseFile.ads[0].priceType);
+						expect(jsonResult.ads[0].price.currency).toBe(responseFile.ads[0].currency);
+						expect(jsonResult.ads[0].price.amount).toBe(responseFile.ads[0].amount);
 						expect(jsonResult.ads[0].viewSeoUrl).toBe(responseFile.ads[0].viewPageUrl);
 						expect(jsonResult.ads[0].pictures[0].url).toBe(responseFile.ads[0].primaryImgUrl);
 

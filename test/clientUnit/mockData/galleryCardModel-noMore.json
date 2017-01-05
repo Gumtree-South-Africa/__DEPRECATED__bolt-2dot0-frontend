@@ -14,7 +14,7 @@
 	"ads": [
 		{
 			"title": "capiTest cars mx ads from capi no more",
-			"adPrice": {
+			"price": {
 				"priceType": "FIXED",
 				"currency": "MXN",
 				"amount": 535
@@ -29,7 +29,7 @@
 		},
 		{
 			"title": "capiTest cars mx ads from capi",
-			"adPrice": {
+			"price": {
 				"priceType": "FIXED",
 				"currency": "MXN",
 				"amount": 535
@@ -44,7 +44,7 @@
 		},
 		{
 			"title": "capiTest cars mx ads from capi",
-			"adPrice": {
+			"price": {
 				"priceType": "FIXED",
 				"currency": "MXN",
 				"amount": 535
@@ -59,7 +59,7 @@
 		},
 		{
 			"title": "capiTest cars mx ads from capi",
-			"adPrice": {
+			"price": {
 				"priceType": "FIXED",
 				"currency": "MXN",
 				"amount": 535
@@ -74,7 +74,7 @@
 		},
 		{
 			"title": "capiTest cars mx ads from capi",
-			"adPrice": {
+			"price": {
 				"priceType": "FIXED",
 				"currency": "MXN",
 				"amount": 535
@@ -89,7 +89,7 @@
 		},
 		{
 			"title": "capiTest cars mx ads from capi",
-			"adPrice": {
+			"price": {
 				"priceType": "FIXED",
 				"currency": "MXN",
 				"amount": 535
@@ -104,7 +104,7 @@
 		},
 		{
 			"title": "capiTest cars mx ads from capi",
-			"adPrice": {
+			"price": {
 				"priceType": "FIXED",
 				"currency": "MXN",
 				"amount": 535
@@ -119,7 +119,7 @@
 		},
 		{
 			"title": "capiTest cars mx ads from capi",
-			"adPrice": {
+			"price": {
 				"priceType": "FIXED",
 				"currency": "MXN",
 				"amount": 535
@@ -134,7 +134,7 @@
 		},
 		{
 			"title": "capiTest cars mx ads from capi",
-			"adPrice": {
+			"price": {
 				"priceType": "FIXED",
 				"currency": "MXN",
 				"amount": 535
@@ -149,7 +149,7 @@
 		},
 		{
 			"title": "capiTest cars mx ads from capi",
-			"adPrice": {
+			"price": {
 				"priceType": "FIXED",
 				"currency": "MXN",
 				"amount": 535
