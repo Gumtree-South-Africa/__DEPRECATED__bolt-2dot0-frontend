@@ -69,7 +69,7 @@
 				font-size: 10px;
 			}
 		}
-		
+
 		.map-form {
 			@include to-breakpoint($small-break) {
 				margin: 0;
@@ -161,7 +161,7 @@
 				.checkbox {
 					@include to-breakpoint($small-break) {
 						padding-top: 3%;
-					}  
+					}
 					.label {
 						font-size: 8pt;
     					line-height: 10pt;
@@ -169,13 +169,13 @@
 				}
 			}
 		}
-		
+
 	}
 	.close-modal {
 		display: none;
 		cursor: pointer;
 		position: absolute;
-		right: 15px;		
+		right: 15px;
 		.close-text {
 			color: gray;
 			font-size: 13px;
@@ -226,7 +226,7 @@
     				font-size: 10pt;
 				}
 			}
-			
+
 			.setLocationButton {
 				background: none;
 				border: none;
@@ -260,13 +260,13 @@
 				height: 250px;
 				background: $formMap-background;
 				width: 100%;
-				@include to-breakpoint($small-break) { 
+				@include to-breakpoint($small-break) {
 					height: 200px;
 				}
 				#map {
 					height: 250px;
 					width: 100%;
-					@include to-breakpoint($small-break) { 
+					@include to-breakpoint($small-break) {
 						height: 200px;
 					}
 				}
@@ -284,7 +284,7 @@
 					color: #333;
 					font-size: 16px;
 
-					@include to-breakpoint($small-break) { 
+					@include to-breakpoint($small-break) {
 						height: 200px;
 						margin-top: -200px;
 						line-height: 200px;
@@ -329,7 +329,7 @@
 					span {
 						text-transform: uppercase;
 					}
-					
+
 				}
 			}
 			.confirmLocationButton {

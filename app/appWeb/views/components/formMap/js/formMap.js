@@ -32,6 +32,7 @@ class FormMap {
 		this.typeMark = this.HtmlSwitchRangeMarker[0].checked;
 		this.secondsSetposition = this.googleMap.secondsSetposition;
 		this.enableComponents = false;
+
 		this.validateCountry = (coordinates) => {
 			return new Promise(function(success, reject) {
 				if (!coordinates) {
@@ -281,9 +282,13 @@ class FormMap {
 	}
 
 	// enable or disable features edit on map
-	setfeatures() {
-		this.map.setOptions({draggable: false, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true});
-	}
+	setfeatures(status) {
+      if(status) {
+          this.map.setOptions({draggable: true, zoomControl: true, scrollwheel: true, disableDoubleClickZoom: false});
+      } else {
+          this.map.setOptions({draggable: false, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true});
+      }
+  }
 
 	setModal(status) {
 		status = status ? status : false;

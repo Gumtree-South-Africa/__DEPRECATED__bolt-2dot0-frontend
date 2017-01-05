@@ -8,6 +8,10 @@
 		"defaultLocation": {
 			"lat": 23.49125085380051,
 			"lng": -100.15682835625
+		},
+    "icons": {
+			"fakeAd": "../../fakead.svg",
+			"current": "../../current.svg"
 		}
 	},
   "locationlatlong": {
