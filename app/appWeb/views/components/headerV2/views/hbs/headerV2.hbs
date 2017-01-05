@@ -11,7 +11,9 @@
         {{#unless this.header.distractionFree}}
             <div id="js-hamburger-icon" class="mobile-only mobile-menu icon-hamburger"></div>
             <a href="{{this.header.postAdPageUrl}}">
-                <div class="mobile-only post-icon icon-post-button"></div>
+                <div class="mobile-only post-icon icon-post-button">
+                    <span>{{i18n "header.postad-short"}}</span>
+                </div>
             </a>
             <div class="left-items">
                 <div id='js-browse-dropdown' class="browse">

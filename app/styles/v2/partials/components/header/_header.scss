@@ -73,6 +73,18 @@ $dropdown-width: 220px;
 			position: absolute;
 			top: 15px;
 			right: 25px;
+
+			span {
+				bottom: 0;
+				color: $button-bgcolor;
+				font-size: 8px;
+				left: 0;
+				line-height: 8px;
+				position: absolute;
+				text-align: center;
+				text-transform: uppercase;
+				width: 100%;
+			}
 		}
 
 		.mobile-only {
