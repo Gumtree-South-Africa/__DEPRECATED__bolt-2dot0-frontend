@@ -92,7 +92,7 @@ $recentactivity-bgcolor:$vivaGray2;
 // use the naming convention: <where used><thing (font, color, etc)>
 
 $cardBackgroundColor: $vivaGray4;
-$cardLinksColor: $gumOrange;
+$cardLinksColor: color(crane, shade);
 
 $cardStatsFont: $gum-p3;
 $cardHeadersFont: $gum-h4;
@@ -204,8 +204,9 @@ $categoryNameColor: $vivaBlue7;
 
 // FOOTER
 //Footer Seo Background section
-$footerSeoBackgroundColor: color(foxtail, base);
+$footerSeoBackgroundColor: color(foxtail, light);
 $seofooter-color: $gumWhite;
+$seoLineColor: color(crane, shade);
 
 //Footer Main Background section
 $footerMainBackgroundColor: color(foxtail, light);
@@ -224,3 +225,10 @@ $footerCircleBorderColor: color(leaf);
 //Any Image/Icon
 $photoFolder: en_ZA;
 $locale: ZA;
+
+// VIP
+$adPropertyValue: color(swirl);
+$expiredAdBackground: color(crane,base);
+$expiredAdText: $gumWhite;
+$expiredAdLink: color(foxtail,base);
+$text-menu-ads: color(crane);

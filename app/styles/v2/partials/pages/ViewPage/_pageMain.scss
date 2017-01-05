@@ -14,13 +14,17 @@
 	width: 45.5em;
 }
 
-#ad-bottombanner{
-	margin: 0 auto;
-	width: 45.5em;
+.vip-bottom-banner-container {
+	position: relative;
+	#ad-bottombanner {
+		margin: 0 auto;
+		width: 45.5em;
+	}
 }
 
 .vip-sponsoredads {
 	width: 100%;
+	padding: 20px 0;
 }
 
 .native-ad{
@@ -45,6 +49,90 @@
 	.vip-right-columns{
 		@include span(4 of 8);
 		margin-right: 0;
+	}
+	.vip-bottom-banner-container {
+		padding: 20px 0;
+	}
+}
+
+@include to-breakpoint($small-break){
+	.post-ad-header{
+		margin-top: -1em;
+		.header-back-page a{
+			position: relative;
+			top: -3.5px;
+		}
+	}
+	.inZoomMode{
+		float: left;
+		font-weight: bold;
+		margin-left: 0.5em;
+		margin-top: 0.2em;
+		.icon-back-other {
+			display: inline-block;
+			position: relative;
+			top: -0.17em;
+			margin-right: 0.15em;
+			+ span {
+				position: relative;
+				top: -0.18em;
+			}
+		}
+	}
+}
+
+// This part is for post overlay
+.welcome-wrapper .modal.post-overlay {
+	display: block;
+
+	.from-post-container {
+		padding: 0 5px;
+	}
+
+	.modal-container {
+		// TODO Find out why modal sets that explicitly and fix it in welcomeModal
+		height: initial;
+		min-height: initial;
+
+		// To ensure the post button will not cover other parts
+		padding-bottom: 65px;
+	}
+}
+.post-overlay.desktop-only {
+	text-align: center;
+
+	.modal-container {
+		// TODO Find out why modal sets that explicitly and fix it in welcomeModal
+		height: initial;
+		min-height: initial;
+
+		width: 340px;
+		top: 25%;
+	}
+
+	h2 {
+		font: $h2;
+		font-weight: $fontWeightBold;
+		color: $vivaBlack;
+	}
+
+	.edit-link {
+		margin-top: 1em;
+	}
+
+	.btn-wrapper {
+		margin-top: 0.5em;
+	}
+}
+// Common part for both desktop and mobile
+.modal.post-overlay {
+	.edit-link {
+		margin-top: 1em;
+
+		a {
+			color: $modal-info;
+			text-decoration: underline;
+		}
 	}
 }
 

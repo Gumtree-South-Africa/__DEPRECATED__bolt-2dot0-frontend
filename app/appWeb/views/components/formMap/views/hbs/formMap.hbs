@@ -1,0 +1,44 @@
+<div class="form-map-component" data-google-map="{{this.googleMap}}" data-location-ad="{{this.locationLatLong}}">
+    <div class="title">{{i18n "postad.location.title"}} <span class="errorMessageMap"></span></div>
+    <div class="map-form">
+        <div class="search-location">
+            <input id='autocompleteTextBox' class='textbox' type='text' placeholder='{{i18n "postad.location.placeholder"}}'></input>
+            <button id="setCurrentLocationButton" class="setLocationButton" type="button">
+                <img src="{{this.urlIcons}}location-arrow.svg" alt="">
+                 {{i18n "postad.location.setLocation"}}</button>
+        </div>
+        <div class="map-component">
+            <div class="map-plugin">
+                <div id="map"></div>
+                <div class="google-maps">
+                    {{#if this.googleMapAuth.googleMapKey}}
+                		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&key={{this.googleMapAuth.googleMapKey}}&channel=bt_mx&libraries=places&language={{this.lang}}"></script>
+                    {{else}}
+                		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&client=gme-marktplaats&channel=bt_mx&libraries=places&language={{this.lang}}"></script>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+        <div class="location-settings">
+            <div class="description">
+                <div class="only-desktop">
+                    {{i18n "postad.location.instructions.desktop"}}
+                </div>
+                <div class="only-mobile">
+                    {{i18n "postad.location.instructions.mobile"}}
+                </div>
+            </div>
+
+            <div class="checkbox">
+                <div class="toggle">
+                    <input id="switchRangeMarker" type="checkbox" class="toggle-input">
+                    <label for="switchRangeMarker" class="toggle-label"></label>
+                </div>
+                <div class="label">
+                    <span>{{i18n "postad.location.uselocation"}}</span><br>
+                    {{i18n "postad.location.uselocation.instructions" }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

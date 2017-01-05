@@ -1,24 +1,26 @@
 <div class="post-ad-header">
-  <div class="post-ad-content">
+    <div class="post-ad-content">
+        {{#if this.backUrl}}
+            <div class="header-back">
+                <span class="icon-back-other"></span>
+                <a href="{{this.backUrl}}" data-gtm="pc|PostAdCancel">{{i18n this.backKey}}</a>
+            </div>
+        {{/if}}
 
-    {{#if this.backUrl}}
-    <div class="header-back">
-      <span class="icon-back-other"></span>
-      <a href="{{this.backUrl}}" data-gtm="pc|PostAdCancel">{{i18n this.backKey}}</a>
+        {{#if this.header.unifiedHeader}}
+            <div class="header-back-page hidden">
+                <span class="icon-back-other"></span>
+                <a href="{{this.header.unifiedHeaderBackUrl}}">{{i18n this.backKey}}</a>
+            </div>
+            <div class="header-back-component inZoomMode hidden">
+                <span class="icon-back-other"></span>
+                <span>{{i18n this.backKey}}</span>
+            </div>
+        {{/if}}
+
+        <div class="header-text">
+            <div class="title-text">{{i18n this.titleKey}}</div>
+            <div class="header-accent">-</div>
+        </div>
     </div>
-    {{/if}}
-
-    <div class="header-text">
-      <div class="title-text">{{i18n this.titleKey}}</div>
-      <div class="header-accent">-</div>
-    </div>
-
-    {{#if this.header.postAdHeader}}
-    <div class="header-backed inZoomMode hidden">
-      <span class="icon-back-other"></span>
-      <span>{{i18n this.backKey}}</span>
-    </div>
-    {{/if}}
-
-  </div>
 </div>

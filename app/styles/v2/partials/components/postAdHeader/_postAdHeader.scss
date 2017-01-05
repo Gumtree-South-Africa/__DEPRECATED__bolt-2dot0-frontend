@@ -17,6 +17,15 @@ $photo-switcher-width: 30%;
 	font-size: 14px;
 	background-color: $postAdHeaderBackground;
 	border-bottom: 1px solid $postAdHeaderBlue;
+	@include to-breakpoint($small-break) {
+		font-size: 10pt;
+	}
+
+	.post-ad-content {
+		// Same with body
+		max-width: 1024px;
+		margin: auto;
+	}
 
 	.header-back {
 		float: left;
@@ -24,15 +33,42 @@ $photo-switcher-width: 30%;
  		@include from-breakpoint($medium-break){
  			display: none;
  		};
+		@include to-breakpoint($small-break) {
+			font-size: 8pt;
+			margin-top: 4px;
+		}
  		.icon-back-other{
  			display: inline-block;
 			position: relative;
-			top: 0.1em;
  		}
 		a {
 			margin-left: 2px;
 			color: $postAdHeaderBlue;
 			font-weight: bold;
+			@include to-breakpoint($small-break) {
+				top: -1.5px !important;
+			}
+		}
+	}
+
+	.header-back-page {
+		float: left;
+		margin-left: 6px;
+		@include to-breakpoint($small-break) {
+			font-size: 8pt;
+			margin-top: 4px;
+		}
+		.icon-back-other{
+			display: inline-block;
+			position: relative;
+		}
+		a {
+			margin-left: 2px;
+			color: $postAdHeaderBlue;
+			font-weight: bold;
+			@include to-breakpoint($small-break) {
+				top: -1.5px !important;
+			}
 		}
 	}
 
@@ -51,6 +87,11 @@ $photo-switcher-width: 30%;
 		left: 50%;
 		text-align: center;
 		font-weight: bold;
+		@include to-breakpoint($small-break) {
+			max-width: 190px;
+    		width: 190px;
+		}
+
 	}
 	.title-text{
  		max-width: 15em;
@@ -62,13 +103,14 @@ $photo-switcher-width: 30%;
  		@include from-breakpoint($medium-break){
  			max-width: 30em;
  		}
-     overflow: hidden;
-     white-space: nowrap;
-     overflow: hidden;
-     text-overflow: ellipsis;
-     text-overflow: ellipsis;
-     -o-text-overflow: ellipsis;
-     -moz-binding: url(assets/xml/ellipsis.xml#ellipsis);
+		overflow: hidden;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		text-overflow: ellipsis;
+		-o-text-overflow: ellipsis;
+		-moz-binding: url(assets/xml/ellipsis.xml#ellipsis);
+		text-transform: uppercase;
  	}
 
 }

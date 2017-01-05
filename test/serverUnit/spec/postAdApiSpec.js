@@ -396,11 +396,9 @@ describe('Post Ad Api', () => {
 					// console.log(JSON.stringify(jsonResult, null, 4));
 					expect(jsonResult.schemaErrors instanceof Array).toBeTruthy('there should be schema errors');
 
-					expect(jsonResult.schemaErrors.length).toBe(2, 'there should be schema errors');
-					expect(jsonResult.schemaErrors[0].field).toBe("data.ads.0.price.currency");
+					expect(jsonResult.schemaErrors.length).toBe(1, 'there should be schema errors');
+					expect(jsonResult.schemaErrors[0].field).toBe("data.ads.0.price.priceType");
 					expect(jsonResult.schemaErrors[0].message).toBe("is required");
-					expect(jsonResult.schemaErrors[1].field).toBe("data.ads.0.price.amount");
-					expect(jsonResult.schemaErrors[1].message).toBe("is required");
 				})
 				.end(specHelper.finish(done));
 		});
@@ -412,6 +410,7 @@ describe('Post Ad Api', () => {
 			"ads": [{
 				imageUrls: ["image"],
 				"price": {
+					"priceType": "FIXED",
 					"currency": "MXN",
 					"amount": "123.00"
 				}
@@ -441,6 +440,7 @@ describe('Post Ad Api', () => {
 			"ads": [{
 				imageUrls: ["image"],
 				"price": {
+					"priceType": "FIXED",
 					"currency": "foo",
 					"amount": 123.00
 				}

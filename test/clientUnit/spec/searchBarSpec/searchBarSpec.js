@@ -145,6 +145,10 @@ describe("Search Bar V2", () => {
 
 			specHelper.simulateEsc($textInput);
 
+			expect($testArea.find(".search-textbox").val()).toBeFalsy();
+
+			specHelper.simulateEsc($textInput);
+
 			expect($testArea.find("#search-controls").hasClass("is-typing")).toBeFalsy();
 		});
 	});

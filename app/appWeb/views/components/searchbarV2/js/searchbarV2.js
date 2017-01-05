@@ -62,14 +62,11 @@ class SearchBar {
 	 */
 	_displayTypeAheadResults(results) {
 		let hasResults = results.items.length > 0;
-		this._setIsTyping(hasResults);
+
+		this.$results.empty();
+
 		if (hasResults) {
-
-			let $ul = this.$typeAheadResults.find("ul");
-
 			this._unbindTypeAheadResultsEvents();
-			// remove existing results
-			$ul.empty();
 
 			// insert new results into the results container
 			results.items.forEach((result) => {
@@ -80,7 +77,7 @@ class SearchBar {
 				// so the terms should all be in preferred location anyway
 				// if we don't have a cookie, we might get terms back from other locations, but we aren't going to pass them along to the SRP
 				let templateString = `<li class="type-ahead-results-row"><a class="type-ahead-link" href="/search.html?q=${result.keyword}&locId=${result.location}&catId=${result.category}">${result.keyword}</a></li>`;
-				$ul.append(templateString);
+				this.$results.append(templateString);
 			});
 
 			// handler to update search bar text with clicked link
@@ -203,13 +200,14 @@ class SearchBar {
 		return this.$searchControls && this.$searchControls.length > 0;
 	}
 
-	closeAutoComplete(dontClearText, dontFocusTextbox) {
-		this._setIsTyping(false);
-		if (!dontClearText) {
+	closeAutoComplete(forceClose) {
+		if (forceClose || !this.$searchTextbox.val()) {
 			this.$searchTextbox.val('');
-		}
-		if (!dontFocusTextbox) {
-			this.$searchTextbox.focus();
+			this.$searchTextbox.blur();
+			this.$results.empty();
+			this._setIsTyping(false);
+		} else {
+			this.$searchTextbox.val('');
 		}
 	}
 
@@ -225,6 +223,7 @@ class SearchBar {
 
 		this.$searchTextbox = this.$searchControls.find("input.search-textbox");
 		this.$typeAheadResults = this.$searchControls.find("#type-ahead-results");
+		this.$results = this.$typeAheadResults.find("ul");
 		this.$searchButton = this.$searchControls.find(".search-button");
 
 		if (this.$searchTextbox.length > 0) {
@@ -234,15 +233,15 @@ class SearchBar {
 			this.$searchTextbox.on(eventName, () => {
 				let textBoxVal = this.$searchTextbox.val();
 				// _setIsTyping(textBoxVal !== "");
-				if (textBoxVal === "") {
-					// make sure we close it when the text is empty (it may have been opened because we had results)
-					this._setIsTyping(false);
-				}
 				this._newTypeAhead(textBoxVal);
 			});
 
+			this.$searchTextbox.on('focus', () => {
+				this._setIsTyping(true);
+			});
+
 			this.$searchMask.on('click', () => {
-				this.closeAutoComplete(true, true);
+				this.closeAutoComplete(true);
 			});
 
 			this.$searchTextbox.on('keyup', (evt) => {
@@ -260,7 +259,7 @@ class SearchBar {
 						evt.preventDefault();
 						break;
 					case 27:
-						this.closeAutoComplete(true);
+						this.closeAutoComplete();
 						evt.preventDefault();
 						break;
 					default:

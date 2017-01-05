@@ -1,40 +1,65 @@
+<input type="hidden" class="messaging-flag" value="{{this.header.messagingFlag}}">
+
 {{#partial "content"}}
+
     {{> (dynamic "modal")}}
 
     {{> (dynamic "breadcrumbsV2") breadcrumbs=this.advert.breadcrumbs}}
 
     {{> (dynamic "topBanner")}}
 
+    <div class="status-ad-banner-mobile">
+        {{> (dynamic "statusBanner") }}
+    </div>
+
     <div class="vip-left-columns">
         <div id="viewPage">
-            {{> (dynamic "viewPageGallery")}}
+            {{#if this.advert.picturesToDisplay.testPictures.length}}
+                {{> (dynamic "viewPageGallery")}}
+            {{/if}}
+
+            {{#ifMobile this.device}}
+                <div class="seller-profile">
+                    {{> (dynamic "sellerProfile")}}
+                </div>
+                {{> (dynamic "adStats") }}
+                {{#block "vip-adstats"}}{{/block}}
+            {{else}}
+                <div class="clear-line"></div>
+            {{/ifMobile}}
 
             <div class="item-details">
-              {{> (dynamic "adDetails")}}
+                {{> (dynamic "adDetails")}}
             </div>
 
-            {{#if this.flagAd}}
-                <div class="vip vip-flagad">
-                    {{> (dynamic "flagAd")}}
-                </div>
-            {{/if}}
+            {{#unlessMobile this.device}}
+                {{#if this.flagAd}}
+                    <div class="vip vip-flagad">
+                        {{> (dynamic "flagAd")}}
+                    </div>
+                {{/if}}
+            {{/unlessMobile}}
         </div>
 
         {{#if this.vip.payWithShepherd}}
             <div>
                 <span class="icon-shepherd-pay-button" data-target='_blank' data-gtm="pc|ShepherdClick"
-                   data-uri="https://www.paywithshepherd.com/gumtree_buyer/buy_now?remote_url={{this.header.viewPageUrl}}"></span>
+                    data-uri="https://www.paywithshepherd.com/gumtree_buyer/buy_now?remote_url={{this.header.viewPageUrl}}"></span>
             </div>
         {{/if}}
     </div>
 
     <div class="vip-right-columns">
-        <div class="seller-profile">
-            {{> (dynamic "sellerProfile")}}
+        <div class="status-ad-banner-desktop">
+            {{> (dynamic "statusBanner") }}
         </div>
-
-        {{> (dynamic "adStats") }}
-        {{#block "vip-adstats"}}{{/block}}
+        {{#unlessMobile this.device}}
+            <div class="seller-profile">
+                {{> (dynamic "sellerProfile")}}
+            </div>
+            {{> (dynamic "adStats") }}
+            {{#block "vip-adstats"}}{{/block}}
+        {{/unlessMobile}}
 
         <div class="reply-form">
             {{> (dynamic "replyForm")}}
@@ -45,8 +70,23 @@
             {{#block "vip-map"}}{{/block}}
         </div>
 
+        {{#ifMobile this.device}}
+            {{#if this.flagAd}}
+                <div class="clear-line"></div>
+                <div class="vip vip-flagad">
+                    {{> (dynamic "flagAd")}}
+                </div>
+            {{/if}}
+        {{/ifMobile}}
+
         {{> (dynamic "nativeAdBanner")}}
         {{#block "NativeAdCalculator"}}{{/block}}
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="vip-bottom-banner-container">
+        {{> (dynamic "bottomBanner")}}
     </div>
 
     {{> (dynamic "adTabs")}}
@@ -56,25 +96,57 @@
         {{#block "AdsenseBottom-Content"}}{{/block}}
     </div>
 
-    {{> (dynamic "bottomBanner")}}
+    <div class="clear"></div>
 
     <div class="seo-wrapper">
         <h1>{{i18n "home.h1Tag"}}</h1>
         {{> (dynamic "topSearches") topSearches=this.keywords homePageUrl=this.header.homePageUrl}}
     </div>
 
-    {{#partial "welcomeModal"}}
-        {{> (dynamic "welcomeModal") hasReplyForm=true}}
+    {{#unless this.vip.showBuyerStuff}}
+        {{#if showPostOverlay}}
+            <input type="hidden" class="from-post-flag" value="true"
+                   data-post-more-text="{{i18n "vip.postOverlay.postMore"}}">
+            <div class="post-overlay modal desktop-only">
+                <div class="modal-overlay"></div>
+                <div class="modal-container">
+                    <div class="modal-close-section">
+                        {{!-- This DIV is to meet structure asked by modal.scss but I don't know why it's needed --}}
+                        <div>
+                            <span class="close-text">{{i18n "welcomescreen.close"}}</span>
+                            <span class="icon-close"></span>
+                        </div>
+                    </div>
+                    <h2 class="modal-header-message">{{i18n postOverlayTitleKey}}</h2>
+                    <div class="modal-info">{{i18n "vip.postOverlay.description"}}</div>
+                    <div class="edit-link"><a data-gtm="pc|EditAdBegin" href="/edit/{{adId}}">{{i18n
+                        "vip.postOverlay.edit"}}</a></div>
+                    {{> (dynamic "button") i18nPath="vip.postOverlay.postMore" gtmEvent="pc|PostAdBegin" buttonLink="/post" hideIcon=false iconName="icon-post" }}
+                </div>
+            </div>
+        {{/if}}
+    {{/unless}}
+
+    {{#partial "welcomeText"}}
+        {{#unless this.vip.showBuyerStuff}}
+            {{#if showPostOverlay}}
+                <div class="from-post-container">
+                    <h2>{{i18n postOverlayTitleKey}}</h2>
+                    <div class="modal-info">{{i18n "vip.postOverlay.description"}}</div>
+                    <div class="edit-link"><a data-gtm="pc|EditAdBegin" href="/edit/{{adId}}">{{i18n
+                        "vip.postOverlay.edit"}}</a></div>
+                </div>
+            {{/if}}
+        {{/unless}}
     {{/partial}}
 
+    {{#partial "welcomeModal"}}
+        {{> (dynamic "welcomeModal") isBuyerPage=this.vip.showBuyerStuff}}
+    {{/partial}}
 {{/partial}}
 
 
 {{#partial "pageTailScripts"}}
-
-    {{#block "captchaTailsScripts"}}
-    {{/block}}
-
     <script>
         var googleTagAccountMobId = "{{this.header.googleTagAccountMobId}}";
         var googleTagAccountId = "{{this.header.googleTagAccountId}}";
@@ -91,11 +163,14 @@
         };
 
         {{#block "googleBannerAdsBottom_Script"}}{{/block}}
+
         {{#block "NativeAd_Script"}}{{/block}}
-	</script>
+    </script>
 
     {{#partial "Adsense-Script-ext"}}
         init(x.desktopNumAdsTop, x.desktopNumAdsBottom, x.desktopSiteLinks, x.desktopPubId, true, '#FFFFF0', 120, 80);
     {{/partial}}
     {{#block "Adsense-Script"}}{{/block}}
+
+    {{#block "captchaTailsScripts"}}{{/block}}
 {{/partial}}

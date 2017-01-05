@@ -9,11 +9,18 @@ $formMarginLeft: 6%;
     &:hover {
       text-decoration: none;
     }
+    &.hide {
+    	display: none;
+    }
     color: #1E98D5;
     display: block;
     font-weight: bold;
     margin: 0 auto;
     width: 50%;
+    @include to-breakpoint($small-break) {
+        width: 100% !important;
+        text-align: center !important;
+    }
     .icon-warning-sign {
       display: inline-block;
       margin-bottom: -2px;
@@ -21,6 +28,8 @@ $formMarginLeft: 6%;
       height: 20px;
     }
   }
+
+
   .flagad-container {
     p.error{
       display: none;

@@ -21,6 +21,7 @@ module.exports = {
 				"ModalLocation": "app/appWeb/views/components/modal/js/locationModal.js",
 				"TopLocations": "app/appWeb/views/components/topLocations/js/topLocations.js",
 				"TopSearches": "app/appWeb/views/components/topSearches/js/topSearches.js",
+				"TopCategories": "app/appWeb/views/components/topCategories/js/topCategories.js",
 				"ServiceWorker": "app/appWeb/serviceWorkers/service-worker-registration.js",
 				"PageMain": "app/appWeb/views/templates/pages/homepageV2/js/homepageV2.js"
 			},

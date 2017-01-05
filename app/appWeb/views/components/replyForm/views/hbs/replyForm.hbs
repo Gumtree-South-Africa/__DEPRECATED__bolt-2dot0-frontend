@@ -1,56 +1,263 @@
 {{#partial "replyFormContainer"}}
-    <div class="reply-form-container">
-        {{#if this.advert.sellerDetails.contactInfo.phone}}
+    <div id="replyModal" class="message-sent modal modal-cp desktop-only hide">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <div class="desktop-header">
+                {{#if this.advert.sellerDetails.contactInfo.name}}
+                    <span class="desktop-message-text">{{i18n "vip.reply.message-small"
+                                                              this.advert.sellerDetails.contactInfo.name}}</span>
+                {{else}}
+                    <span class="desktop-message-text">{{i18n "vip.reply.message-small" ''}}{{i18n
+                        'vip.seller.defaultUserName'}}</span>
+                {{/if}}
+                <div class="close-button">{{i18n 'vip.reply.close'}}
+                    <div class="icon-close-small-bold close-icon-font"></div>
+                </div>
+            </div>
+            <div class="message-sent-text">{{i18n "vip.reply.messageSent"}}</div>
+            <div class="send-message-text">{{i18n "vip.reply.sendMessageAgain"}}</div>
+            <div class="return-button"><a href="{{this.advert.breadcrumbs.returnToBrowsingLink}}">{{i18n
+                'vip.reply.returnToBrowsing'}}</a></div>
+        </div>
+    </div>
+
+    <div class="message-sent mobile-only hide">
+        <div class="message-sent-text">{{i18n "vip.reply.messageSent"}}</div>
+        <div class="send-message-text">{{i18n "vip.reply.sendMessageAgain"}}</div>
+        <div class="return-button"><a href="{{this.advert.breadcrumbs.returnToBrowsingLink}}">{{i18n
+            'vip.reply.returnToBrowsing'}}</a></div>
+    </div>
+
+    <div class="reply-form-container desktop-only">
+        {{#if this.advert.phone}}
             <div class="phone-header-desktop">
-                <div><span class="phone-icon icon-phone-orange"></span><span class="hidden-phone">{{this.advert.sellerDetails.contactInfo.phoneHiddenNumber}}</span><span class="real-phone hide">{{this.advert.sellerDetails.contactInfo.phone}}</span><span class="float-right show-phone">{{i18n "vip.reply.showPhone"}}</span></div>
+                <div>
+                    <span class="phone-icon icon-phone-orange"></span>
+                    <span class="hidden-phone">{{this.advert.phoneHiddenNumber}}</span>
+                    <span class="real-phone hide">{{this.advert.phone}}</span>
+                    <span class="float-right show-phone">{{i18n "vip.reply.showPhone"}}</span>
+                </div>
             </div>
         {{/if}}
 
-        <form class="main-content">
+        <form action="/api/ads/reply" method="post" class="main-content">
             <div class="reply-form-content">
                 <div class="login-message-container">
                     <span class="desktop-message">{{i18n "vip.reply.sendMessage"}}</span>
                     {{#unless this.header.id}}
-                        <span class="desktop-paren">(</span><a class=login-link href="{{this.header.homePageUrl}}{{this.advert.loginRedirectUrl}}">{{i18n "vip.reply.login"}}</a>
+                        <span class="desktop-paren">(</span><span><a class=login-link
+                                                                     href="{{this.header.homePageUrl}}{{this.advert.loginRedirectUrl}}">{{i18n
+                        "vip.reply.login"}}</a></span>
                         <span>{{i18n "vip.reply.loginMessage"}}</span>
                         <span class="desktop-paren">)</span>
                     {{/unless}}
                 </div>
 
                 {{#each this.advert.replyInfo.cannedReplyKeys}}
-                    <div class="interested-message-container"><input class="viva-checkbox" type="checkbox"><span class="interested-message">{{i18n this}}</span></div>
+                    {{#compare @index "<" 1}}
+                        <div class="canned-message-container"><input data-id="{{i18n this}}"
+                                                                     class="canned-checkbox viva-checkbox"
+                                                                     type="checkbox" checked><span
+                            class="canned-message">{{i18n this}}</span></div>
+                    {{else}}
+                        <div class="canned-message-container"><input data-id="{{i18n this}}"
+                                                                     class="canned-checkbox viva-checkbox"
+                                                                     type="checkbox"><span
+                            class="canned-message">{{i18n this}}</span></div>
+                    {{/compare}}
                 {{/each}}
 
-                <div class="viva-labels"><span>{{i18n "vip.reply.message"}}*</span><span class="viva-labels float-right">*{{i18n "vip.reply.required"}}</span></div>
-                <textarea class="message-box-area box-area" type="text" placeholder="{{i18n 'vip.reply.writeHere'}}" oninvalid="this.setCustomValidity('{{i18n "vip.reply.messageValidate"}}')" required></textarea>
+                <div class="viva-labels">
+                    {{#if this.advert.sellerDetails.contactInfo.name}}
+                        <span>{{i18n "vip.reply.message" this.advert.sellerDetails.contactInfo.name}}*</span>
+                    {{else}}
+                        <span>{{i18n "vip.reply.message" ''}}{{i18n 'vip.seller.defaultUserName'}}*</span>
+                    {{/if}}
+
+                    <span class="viva-labels float-right">*{{i18n "vip.reply.required"}}</span></div>
+                <textarea name="replyMessage" class="message-box-area box-area" type="text"
+                          placeholder="{{i18n 'vip.reply.writeHere'}}" required></textarea>
+                <div class="hide fe-message-validation">{{i18n "vip.reply.messageValidate"}}</div>
 
                 {{#unless this.header.id}}
                     <span class="viva-labels">{{i18n "vip.reply.name"}}</span>
-                    <input class="name-box-area box-area" type="text" placeholder="{{i18n 'vip.reply.name'}}">
+                    <input name="buyerName" class="name-box-area box-area" type="text"
+                           placeholder="{{i18n 'vip.reply.sname'}}">
+                    <div class="hide fe-name-validation">{{i18n "vip.reply.nameValidate"}}</div>
                     <span class="viva-labels">{{i18n "vip.reply.email"}}</span>
-                    <input class="box-area email-box-area" type="text" placeholder="{{i18n 'vip.reply.emailPlaceholder'}}" oninvalid="this.setCustomValidity('{{i18n "vip.reply.emailValidate"}}')" required />
+                    <input name="email" class="box-area email-box-area" type="email"
+                           placeholder="{{i18n 'vip.reply.emailPlaceholder'}}" required/>
+                    <div class="hide fe-email-validation">{{i18n "vip.reply.emailValidate"}}</div>
                     <span class="viva-labels">{{i18n "vip.reply.phone"}}</span>
                     {{#if this.advert.replyInfo.phoneRequired}}
-                        <span class="viva-labels float-right">*{{i18n "vip.reply.required"}}</span>
+                        <span class="viva-labels float-right">*</span>
                     {{else}}
                         <span class="viva-labels">{{i18n "vip.reply.phoneOptional"}}</span>
                     {{/if}}
-                    <input class="box-area" type="text" placeholder="{{i18n 'vip.reply.phone'}}" {{#if this.advert.replyInfo.phoneRequired}}required{{/if}}>
+                    <input name="phoneNumber" class="phone-box-area box-area" type="text"
+                           placeholder="{{i18n 'vip.reply.sphone'}}"
+                           data-id="{{this.advert.replyInfo.phoneRequired}}" {{#if
+                        this.advert.replyInfo.phoneRequired}} required {{/if}}>
+                    <div class="hide fe-phone-validation">{{i18n "vip.reply.phoneValidate"}}</div>
+                    <input name="adId" class="hidden" type="text" value="{{this.advert.adId}}">
+                {{else}}
+                    <input name="buyerName" class="name-box-area box-area hidden" type="text"
+                           placeholder="{{i18n 'vip.reply.sname'}}" value="{{this.header.profileName}}">
+                    <div class="hide fe-name-validation">{{i18n "vip.reply.nameValidate"}}</div>
+                    <input name="email" class="box-area email-box-area hidden" type="email"
+                           placeholder="{{i18n 'vip.reply.emailPlaceholder'}}" value="{{this.header.userEmail}}"
+                           required/>
+                    <span class="viva-labels">{{i18n "vip.reply.phone"}}</span><span class="viva-labels">{{i18n
+                    "vip.reply.phoneOptional"}}</span>
+                    <input name="phoneNumber" class="phone-box-area box-area" type="text"
+                           placeholder="{{i18n 'vip.reply.sphone'}}"
+                           data-id="{{this.advert.replyInfo.phoneRequired}}" {{#if
+                        this.advert.replyInfo.phoneRequired}} required {{/if}}>
+                    <div class="hide fe-phone-validation">{{i18n "vip.reply.phoneValidate"}}</div>
+                    <input name="adId" class="hidden" type="text" value="{{this.advert.adId}}">
                 {{/unless}}
 
-                <div class="send-message-container"><input class="viva-checkbox" type="checkbox"><span class="send-message">{{i18n "vip.reply.sendACopy"}}</span></div>
+                {{#if this.advert.replyInfo.attachmentEnabled}}
+                    <div class="viva-labels">{{i18n "vip.reply.attachAFile"}}</div>
+                    <label for="file-upload" class="custom-file-upload">
+                        {{i18n "vip.reply.browseFiles"}}
+                    </label>
+                    <input name="fileName" id="file-upload" type="file"/>
+                    <span class="file-text">{{i18n "vip.reply.pdfOrDoc"}}</span>
+                {{/if}}
+
+                <div class="send-message-container">
+                    <input class="viva-checkbox" name="isSendMeCopyEmail" checked="checked" type="checkbox">
+                    <span class="send-message">{{i18n "vip.reply.sendACopy"}}</span>
+                </div>
                 <input type="submit" value="{{i18n 'vip.reply.send'}}" id="vip-send-button">
-                <div class="vip-terms">{{i18n "vip.reply.terms" 'https://ayuda.vivanuncios.com.mx/MX/Terminos_y_Condiciones' 'https://ayuda.vivanuncios.com.mx/MX/Privacidad_mx'}}</div>
+                <div class="vip-terms">{{i18n "vip.reply.terms"
+                                              'https://ayuda.vivanuncios.com.mx/MX/Terminos_y_Condiciones'
+                                              'https://ayuda.vivanuncios.com.mx/MX/Privacidad_mx'}}</div>
+                <input name="seoUrl" class="hidden" value="{{this.advert.seoVipUrl}}">
             </div>
         </form>
     </div>
+
+    <noscript>
+        <div class="reply-form-container desktop-only nonJsOnlyInlineBlock">
+            {{#if this.advert.sellerDetails.contactInfo.phone}}
+                <div class="phone-header-desktop">
+                    <div><span class="phone-icon icon-phone-orange"></span><span
+                        class="hidden-phone">{{this.advert.sellerDetails.contactInfo.phoneHiddenNumber}}</span><span
+                        class="real-phone hide">{{this.advert.sellerDetails.contactInfo.phone}}</span><span
+                        class="float-right show-phone">{{i18n "vip.reply.showPhone"}}</span></div>
+                </div>
+            {{/if}}
+
+            <form action="/api/ads/reply" method="post" class="main-content">
+                <div class="reply-form-content">
+                    <div class="login-message-container">
+                        <span class="desktop-message">{{i18n "vip.reply.sendMessage"}}</span>
+                        {{#unless this.header.id}}
+                            <span class="desktop-paren">(</span><span><a class=login-link
+                                                                         href="{{this.header.homePageUrl}}{{this.advert.loginRedirectUrl}}">{{i18n
+                            "vip.reply.login"}}</a></span>
+                            <span>{{i18n "vip.reply.loginMessage"}}</span>
+                            <span class="desktop-paren">)</span>
+                        {{/unless}}
+                    </div>
+
+                    {{#each this.advert.replyInfo.cannedReplyKeys}}
+                        {{#compare @index "<" 1}}
+                            <div class="canned-message-container"><input data-id="{{i18n this}}"
+                                                                         class="canned-checkbox viva-checkbox"
+                                                                         type="checkbox" checked><span
+                                class="canned-message">{{i18n this}}</span></div>
+                        {{else}}
+                            <div class="canned-message-container"><input data-id="{{i18n this}}"
+                                                                         class="canned-checkbox viva-checkbox"
+                                                                         type="checkbox"><span
+                                class="canned-message">{{i18n this}}</span></div>
+                        {{/compare}}
+                    {{/each}}
+
+                    <div class="viva-labels">
+                        {{#if this.advert.sellerDetails.contactInfo.name}}
+                            <span>{{i18n "vip.reply.message" this.advert.sellerDetails.contactInfo.name}}*</span>
+                        {{else}}
+                            <span>{{i18n "vip.reply.message" ''}}{{i18n 'vip.seller.defaultUserName'}}*</span>
+                        {{/if}}
+
+                        <span class="viva-labels float-right">*{{i18n "vip.reply.required"}}</span></div>
+                    <textarea name="replyMessage" class="message-box-area box-area" type="text"
+                              placeholder="{{i18n 'vip.reply.writeHere'}}" required></textarea>
+                    <div class="hide fe-message-validation">{{i18n "vip.reply.messageValidate"}}</div>
+
+                    {{#unless this.header.id}}
+                        <span class="viva-labels">{{i18n "vip.reply.name"}}</span>
+                        <input name="buyerName" class="name-box-area box-area" type="text"
+                               placeholder="{{i18n 'vip.reply.sname'}}">
+                        <div class="hide fe-name-validation">{{i18n "vip.reply.nameValidate"}}</div>
+                        <span class="viva-labels">{{i18n "vip.reply.email"}}</span>
+                        <input name="email" class="box-area email-box-area" type="email"
+                               placeholder="{{i18n 'vip.reply.emailPlaceholder'}}" required/>
+                        <div class="hide fe-email-validation">{{i18n "vip.reply.emailValidate"}}</div>
+                        <span class="viva-labels">{{i18n "vip.reply.phone"}}</span>
+                        {{#if this.advert.replyInfo.phoneRequired}}
+                            <span class="viva-labels float-right">*{{i18n "vip.reply.required"}}</span>
+                        {{else}}
+                            <span class="viva-labels">{{i18n "vip.reply.phoneOptional"}}</span>
+                        {{/if}}
+                        <input name="phoneNumber" class="phone-box-area box-area" type="text"
+                               placeholder="{{i18n 'vip.reply.sphone'}}"
+                               data-id="{{this.advert.replyInfo.phoneRequired}}" {{#if
+                            this.advert.replyInfo.phoneRequired}} required {{/if}}>
+                        <div class="hide fe-phone-validation">{{i18n "vip.reply.phoneValidate"}}</div>
+                        <input name="adId" class="hidden" type="text" value="{{this.advert.adId}}">
+                    {{else}}
+                        <input name="buyerName" class="name-box-area box-area hidden" type="text"
+                               placeholder="{{i18n 'vip.reply.sname'}}" value="{{this.header.profileName}}">
+                        <div class="hide fe-name-validation">{{i18n "vip.reply.nameValidate"}}</div>
+                        <input name="email" class="box-area email-box-area hidden" type="email"
+                               placeholder="{{i18n 'vip.reply.emailPlaceholder'}}" value="{{this.header.userEmail}}"
+                               required/>
+                        <span class="viva-labels">{{i18n "vip.reply.phone"}}</span><span class="viva-labels">{{i18n
+                        "vip.reply.phoneOptional"}}</span>
+                        <input name="phoneNumber" class="phone-box-area box-area" type="text"
+                               placeholder="{{i18n 'vip.reply.sphone'}}"
+                               data-id="{{this.advert.replyInfo.phoneRequired}}" {{#if
+                            this.advert.replyInfo.phoneRequired}} required {{/if}}>
+                        <div class="hide fe-phone-validation">{{i18n "vip.reply.phoneValidate"}}</div>
+                        <input name="adId" class="hidden" type="text" value="{{this.advert.adId}}">
+                    {{/unless}}
+
+                    {{#if this.advert.replyInfo.attachmentEnabled}}
+                        <div class="viva-labels">{{i18n "vip.reply.attachAFile"}}</div>
+                        <label for="file-upload" class="custom-file-upload">
+                            {{i18n "vip.reply.browseFiles"}}
+                        </label>
+                        <input name="fileName" id="file-upload" type="file"/>
+                        <span class="file-text">{{i18n "vip.reply.pdfOrDoc"}}</span>
+                    {{/if}}
+
+                    <div class="send-message-container">
+                        <input class="viva-checkbox" name="isSendMeCopyEmail" checked="checked" type="checkbox">
+                        <span class="send-message">{{i18n "vip.reply.sendACopy"}}</span>
+                    </div>
+                    <input type="submit" value="{{i18n 'vip.reply.send'}}" id="vip-send-button">
+                    <div class="vip-terms">{{i18n "vip.reply.terms"
+                                                  'https://ayuda.vivanuncios.com.mx/MX/Terminos_y_Condiciones'
+                                                  'https://ayuda.vivanuncios.com.mx/MX/Privacidad_mx'}}</div>
+                    <input name="seoUrl" class="hidden" value="{{this.advert.seoVipUrl}}">
+                </div>
+            </form>
+        </div>
+    </noscript>
 {{/partial}}
 
 
-{{#if this.header.id}}
-    {{#unless this.vip.showSellerStuff}}
+{{#if this.advert.statusInfo.isActive}}
+    {{#if this.header.id}}
+        {{#unless this.vip.showSellerStuff}}
+            {{#block "replyFormContainer"}}{{/block}}
+        {{/unless}}
+    {{else}}
         {{#block "replyFormContainer"}}{{/block}}
-    {{/unless}}
-{{else}}
-    {{#block "replyFormContainer"}}{{/block}}
+    {{/if}}
 {{/if}}

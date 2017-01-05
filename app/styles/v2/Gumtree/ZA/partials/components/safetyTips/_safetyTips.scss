@@ -20,3 +20,15 @@
 		}
 	}
 }
+@include to-breakpoint($small-break) {
+	.safety-tips-wrapper {
+		.safety-tips-container {
+			.safety-tips-card, .home_rghtbanner2, .home_rghtbanner {
+				display: none;
+			}
+			.home_rghtbanner:first-of-type {
+				display: block;
+			}
+		}
+	}
+}

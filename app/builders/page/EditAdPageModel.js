@@ -13,7 +13,6 @@ let BasePageModel = require(cwd + '/app/builders/common/BasePageModel');
 let SeoModel = require(cwd + '/app/builders/common/SeoModel');
 let VerticalCategoryUtil = require(cwd + '/app/utils/VerticalCategoryUtil.js');
 
-
 let _ = require('underscore');
 
 class EditAdPageModel {
@@ -132,13 +131,33 @@ class EditAdPageModel {
 			return editAdModel.getAd(this.adId).then((data) => {
 				modelData.categoryCurrentHierarchy = [];
 
-				// if we have no price or have an unknown currency, default price
-				if (!data.price || (data.price.currency !== "MXN" && data.price.currency !== "USD")) {
-					modelData.shouldDefaultPrice = true;
+				if (data.price && (data.price.priceType !== 'FIXED' &&
+					data.price.priceType !== 'MAKE_OFFER' && data.price.priceType !== 'CONTACT_ME')) {
+					// Change unsupported price type to be fixed with 0
+					data.price.priceType = 'FIXED';
+					data.price.amount = 0;
+					// formattedAmount will not be used in post / edit page
 				}
+
 				this.getCategoryHierarchy(modelData.categoryAll, data.categoryId, modelData.categoryCurrentHierarchy);
 				return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
 					_.extend(modelData, attributeModel.processCustomAttributesList(attributes, data));
+
+					if (modelData.priceAttribute) {
+						// if we have no price or have an unknown currency, default price
+						if (!data.price || (modelData.priceAttribute.currencyAllowedValues &&
+							modelData.priceAttribute.currencyAllowedValues.indexOf(data.price.currency) < 0)) {
+							modelData.shouldDefaultPrice = true;
+						}
+
+						// TODO Use Handlebar helper IfInArray if created because the policy is using Handlebar helper as little as possible
+						if (modelData.priceAttribute.priceTypeAllowedValues) {
+							modelData.allowedPriceTypes = {};
+							modelData.priceAttribute.priceTypeAllowedValues.forEach((value) => {
+								modelData.allowedPriceTypes[value] = true;
+							});
+						}
+					}
 
 					// Mixin "required" flag for attributes of vertical categories
 					let verticalCategory = VerticalCategoryUtil.getVerticalCategory(

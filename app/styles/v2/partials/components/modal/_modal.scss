@@ -34,12 +34,19 @@
           > div .close-text {
             vertical-align: middle;
             margin-right: 0.5em;
+		    font-size: 12px;
           }
           > div .icon-close{
               display: inline-block;
               vertical-align: middle;
 			  cursor: pointer;
           }
+		  .close-icon-font {
+			  display: inline-block;
+			  position: relative;
+			  top: 2px;
+			  right: 1px;
+		  }
       }
   }
 }
@@ -68,6 +75,17 @@
       border: 1px solid blue;
       float: left;
     }
+	.icon-location-v2{
+		margin-right: 0.2em;
+		background-image: url("../../../../../svgsV2/#{$photoFolder}/location-v2.svg");
+		width: 35px;
+		height: 30px;
+		background-size: 40px 30px;
+		margin-top: 6px;
+		&:hover{
+			background-image: url("../../../../../svgsV2/#{$photoFolder}/location-v2-hover.svg");
+		}
+	}
   }
   input{
     border: transparent;
@@ -102,11 +120,3 @@
 	pointer-events: none;
 	opacity: 0.5;
 }
-
-.change-loc {
-	font: $p2;
-	color: $modal-info;
-	margin-top: 0.25em;
-	margin-left: 1em;
-}
-

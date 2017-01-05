@@ -12,6 +12,7 @@ class viewPageGallery {
 	initialize(imgLength) {
 
 		const MEDIUM_BREAKPOINT = 848;
+		this._translationBlock = JSON.parse($("#translation-block").text());
 		$('.slider-mobile-for').not('.slick-initialized').slick({
 			dots: true,
 			arrows: false,
@@ -72,13 +73,13 @@ class viewPageGallery {
 			} else {
 				//isMobile
 				window.scrollTo(0,0);
-				 $('.welcome-wrapper, .isMobile .icon-Zoom, .header-back').addClass('hidden');
-				 $('.zoomT, .inZoomMode').removeClass('hidden');
-				 $('body').addClass('noScroll');
-				 $('.post-ad-header .title-text').html('ZOOM VIEW');
-				 $('.zoomHolder').addClass('zoomview');
-				 $('.slick-dots').addClass('bottomPos'); 
-				 this.updateZoomImageHeight();
+				$('.welcome-wrapper, .isMobile .icon-Zoom, .header-back-page').addClass('hidden');
+				$('.zoomT, .inZoomMode').removeClass('hidden');
+				$('body').addClass('noScroll');
+				$('.post-ad-header .title-text').html(this._getTranslation("vip.details.zoomView"));
+				$('.zoomHolder').addClass('zoomview');
+				$('.slick-dots').addClass('bottomPos');
+				this.updateZoomImageHeight();
 			}
 		});
 
@@ -97,7 +98,7 @@ class viewPageGallery {
 			return false;
 		});
 
-		$('.header-wrapper').on('click', '.post-ad-header .header-back', () => {
+		$('.header-wrapper').on('click', '.post-ad-header .header-back-page', () => {
 			this.backFn();
 		});
 
@@ -146,7 +147,7 @@ class viewPageGallery {
 
 	backFromZoomFn() {
 		if($('.zoomHolder').is('.zoomview')) {
-			$('.welcome-wrapper, .isMobile .icon-Zoom, .header-back').removeClass('hidden');
+			$('.welcome-wrapper, .isMobile .icon-Zoom, .header-back-page, .header-back-component').removeClass('hidden');
 			$('.zoomT, .inZoomMode').addClass('hidden');
 			$('body').removeClass('noScroll');
 			$('.zoomHolder').removeClass('zoomview');
@@ -158,7 +159,7 @@ class viewPageGallery {
 	backFn() {
 		// not in Zoom view
 		if (document.referrer.indexOf(window.location.host) !== -1) {
-			window.location.href = $('.header-back a').attr('href');
+			window.location.href = $('.header-back-page a').attr('href');
 		} else {
 			history.go(-1);
 			return false;
@@ -188,6 +189,21 @@ class viewPageGallery {
 		let indxChar = (isMobile) ? title.length : 60;
 		let subtitle = title.substring(0,indxChar) + " ...";
 		return subtitle;
+	}
+
+	_getTranslation(keys) {
+		if (this._translationBlock[keys]) {
+			return this._translationBlock[keys];
+		} else {
+			let keyNames = keys.split('.');
+			let result = this._translationBlock;
+			keyNames.forEach((name) => {
+				if (result[name]) {
+					result = result[name];
+				}
+			});
+			return result;
+		}
 	}
 
 }

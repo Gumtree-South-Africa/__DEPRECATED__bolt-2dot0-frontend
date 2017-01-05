@@ -186,28 +186,39 @@ http://www.gumtree.co.za.localhost:8000
 
 
 
-## Deployment Tasks
+## Deployment Tips
 
-### Deploy in VM
+### Process Runtime Parameters
 ```
-Using pm2
-
-pm2 stop frontend
-PM_CWD=/opt/nodejs/bolt-2dot0-frontend/active NODE_CONFIG_DIR=/opt/nodejs/bolt-2dot0-frontend/active/server/config NODE_ENV=vmdeploy NODE_APP_INSTANCE=null PORT=8000 BASEDOMAINSUFFIX=lb-frontend-v7gff.ebayc3.com pm2 start /opt/nodejs/bolt-2dot0-frontend/active/bin/www --name "frontend" --log-date-format "YYYY-MM-DD HH:mm Z" -o /opt/nodejs/bolt-2dot0-frontend/active/out.log -e /opt/nodejs/bolt-2dot0-frontend/active/error.log
-```
-
-### Deploy in PP
-```
-Using pm2
-
-pm2 stop frontend
-PM_CWD=/opt/nodejs/bolt-2dot0-frontend/active NODE_CONFIG_DIR=/opt/nodejs/bolt-2dot0-frontend/active/server/config NODE_ENV=ppdeploy NODE_APP_INSTANCE=null PORT=8000 BASEDOMAINSUFFIX=lb-frontend-v7gff.ebayc3.com pm2 start /opt/nodejs/bolt-2dot0-frontend/active/bin/www --name "frontend" --log-date-format "YYYY-MM-DD HH:mm Z" -o /opt/nodejs/bolt-2dot0-frontend/active/out.log -e /opt/nodejs/bolt-2dot0-frontend/active/error.log
+NODE_CONFIG_DIR=/opt/nodejs/bolt-2dot0-frontend/active/server/config --> Specify where to find the config directory
+LOG_DIR=$LOG_DIR --> Specify where the log files will be located
+NODE_ENV=pp_phx_deploy --> Specify what environment file to use
+PORT=8000 --> Specify port the node app should run on
+BASEDOMAINSUFFIX=staging2.qa-bolt.com --> Specify what should be the base domain suffix
+PROXY_HOST=pp-squidvip.phx.ops.pp.bt.ecg.so --> Specify the proxy host
+PROXY_PORT=3128 --> Specify the proxy port
 ```
 
-### Deploy in LnP
+### Forever Parameters
 ```
-Using pm2
+Command: forever start --append -l $LOG_DIR/forever.log -o $LOG_DIR/out.log -e $LOG_DIR/error.log $APP_PATH" > /dev/null 2>&1
 
-pm2 stop frontend
-PM_CWD=/opt/nodejs/bolt-2dot0-frontend/active NODE_CONFIG_DIR=/opt/nodejs/bolt-2dot0-frontend/active/server/config NODE_ENV=lnpdeploy NODE_APP_INSTANCE=null PORT=8000 BASEDOMAINSUFFIX=lb-frontend-v7gff.ebayc3.com pm2 start /opt/nodejs/bolt-2dot0-frontend/active/bin/www --name "frontend" --log-date-format "YYYY-MM-DD HH:mm Z" -o /opt/nodejs/bolt-2dot0-frontend/active/out.log -e /opt/nodejs/bolt-2dot0-frontend/active/error.log
+-l --> Location of forever log
+-o --> Location of output log
+-e --> Location of error log
+```
+
+### VM Deployment
+```
+http://boltcijk-master-8044.phx01.dev.ebayc3.com:8080/view/bolt-2dot0-frontend/job/bolt-2dot0-frontend_master/
+```
+
+### PP, LnP Deployment
+```
+http://node-test-7448.lvs01.dev.ebayc3.com:8080/view/Staging/
+```
+
+### Production Deployment
+```
+http://node-test-7448.lvs01.dev.ebayc3.com:8080/view/Production/
 ```

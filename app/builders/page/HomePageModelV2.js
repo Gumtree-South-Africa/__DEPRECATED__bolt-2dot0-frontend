@@ -17,6 +17,7 @@ let CardsModel = require(cwd + '/app/builders/common/CardsModel');
 let SearchModel = require(cwd + '/app/builders/common/SearchModel');
 let KeywordModel= require(cwd + '/app/builders/common/KeywordModel');
 let LocationModel = require(cwd + '/app/builders/common/LocationModel');
+let TopCategoriesModel = require(cwd + '/app/builders/common/TopCategoriesModel');
 let SeoModel = require(cwd + '/app/builders/common/SeoModel');
 let AdStatisticsModel = require(cwd + '/app/builders/common/AdStatisticsModel');
 
@@ -67,7 +68,8 @@ class HomePageModelV2 {
 		abstractPageModel.addToClientTranslation(modelData, [
 			"recentactivity.message.listing",
 			"recentactivity.message.sold",
-			"homepage.trending.contact"
+			"homepage.trending.contact",
+			"currency.format"
 		]);
 		return modelBuilder.resolveAllPromises(arrFunctions)
 			.then((data) => {
@@ -117,8 +119,9 @@ class HomePageModelV2 {
 
 		let safetyTipsModel = new SafetyTipsModel(this.req, this.res);
 		let appDownloadModel = new AppDownloadModel(this.req, this.res);
+		let topCategoriesModel = new TopCategoriesModel(this.req, this.res);
 
-		let recentActivityModel = new RecentActivityModel(modelData.bapiHeaders, this.req.app.locals.prodEpsMode);
+		let recentActivityModel = new RecentActivityModel(modelData.bapiHeaders, this.req.app.locals.prodEpsMode, this.res.locals.config.categoryAllData);
 		let cardsModel = new CardsModel(modelData.bapiHeaders, this.req.app.locals.prodEpsMode);
 		let cardNames = cardsModel.getCardNamesForPage("homePage");
 		let searchModel = new SearchModel(modelData.country, modelData.bapiHeaders);
@@ -209,8 +212,8 @@ class HomePageModelV2 {
 			return keywordModel.resolveAllPromises().then((data) => {
 				let keywords = {};
 				keywords.top = data[0];
-				keywords.top.menuTitles = ['home.popular.searches', 'footer.toplocations'];
-				keywords.top.total = 1;
+				keywords.top.menuTitles = ['home.popular.searches', 'footer.toplocations', 'footer.topCategories'];
+				keywords.top.total = 3;
 
 				return keywords;
 			}).fail((err) => {
@@ -218,6 +221,8 @@ class HomePageModelV2 {
 				return {};
 			});
 		};
+
+		this.dataPromiseFunctionMap.topCategories = () => topCategoriesModel.categories;
 
 		this.dataPromiseFunctionMap.adstatistics = () => {
 			return adstatistics.resolveAllPromises().then((data) => {

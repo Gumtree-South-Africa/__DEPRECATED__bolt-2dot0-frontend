@@ -27,7 +27,7 @@
     {{#if this.header.pageUrl}}
         <meta property="og:title" content="{{i18n this.header.pageTitle}}"/>
         <meta property="og:type" content="{{this.header.type}}"/>
-        <meta property="og:image" content='{{#block "ogImg"}}{{this.header.ogUrl}}{{/block}}'/>
+        <meta property="og:image" content='{{#block "ogImg"}}{{{this.header.ogUrl}}}{{/block}}'/>
         <meta property="og:url" content="{{this.header.pageUrl}}"/>
         <meta property="og:site_name" content="{{this.header.brandName}}"/>
         <meta property="og:country-name" content="{{i18n 'header.country.label'}}"/>
@@ -59,7 +59,7 @@
     <link rel="manifest" href="/manifest.json">
 
     {{#if this.header.canonical}}
-        <link rel="canonical" href="{{this.header.canonical}}"/>
+        <link rel="canonical" href="{{{this.header.canonical}}}"/>
     {{/if}}
     {{#block "meta"}}{{/block}}
     {{#block "metaForPage"}}{{/block}}

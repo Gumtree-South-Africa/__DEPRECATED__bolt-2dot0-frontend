@@ -5,45 +5,43 @@
 .slider-for, .slider-mobile-for{
 	background-color: black;
 	overflow: hidden;
+
+	&::after {
+		background: linear-gradient( 0deg, rgba(0, 0, 0, 0.5), transparent );
+		bottom: 0;
+		content: '';
+		display: block;
+		height: 80px;
+		position: absolute;
+		width: 100%;
+	}
 }
 .slick-track{
 	margin: 0 auto;
 }
 .slider-nav{
 	display: none;
-	.slick-carousel {
-		height: 60px;
-	  background-color: #000;
-	  margin: 5px;
-	  border: 1px solid #000;
-	  outline: 0;
-	  cursor: pointer;
-		background-repeat: no-repeat;
-		background-size: cover;
-		background-position: 0px;
-	}
 	&.col1{
-		width:20%;
+		width: 17%;
 	}
 	&.col2{
-		width:40%;
+		width: 33.5%;
 	}
 	&.col3{
-		width:60%;
+		width:50%;
 	}
 	&.col4{
-		width:80%;
+		width: 67%;
 	}
-
 }
 .carousel-images{
 	text-align: center;
 	margin: 0 auto;
-	width: 80%;
+	width: 84%;
 	position: relative;
 	&.extra{
 		background-color: #000;
-	  width: 100%;
+		width: 100%;
 	}
 }
 .slick-prev, .slick-next{
@@ -70,38 +68,46 @@
 	z-index: 9;
 	cursor: pointer;
 	-moz-transform: scaleX(-1);
-  -o-transform: scaleX(-1);
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
-  filter: FlipH;
-  -ms-filter: "FlipH";
+	-o-transform: scaleX(-1);
+	-webkit-transform: scaleX(-1);
+	transform: scaleX(-1);
+	filter: FlipH;
+	-ms-filter: "FlipH";
 }
 
 @include to-breakpoint($small-break){
 	.post-ad-header{
 		margin-top: -1em;
+		.header-back-page a{
+			position: relative;
+			top: -3.5px;
+		}
 	}
 	.inZoomMode{
 		float: left;
-    font-weight: bold;
-    margin-left: 0.5em;
+		font-weight: bold;
+		margin-left: 0.5em;
 		.icon-back-other {
 			display: inline-block;
-	    position: relative;
-	    top: 0.1em;
-	    margin-right: 0.15em;
+			position: relative;
+			top: -0.17em;
+			margin-right: 0.15em;
+			+ span {
+				position: relative;
+				top: -0.18em;
+			}
 		}
 	}
 	.zoomT{
-	 	position: fixed;
-	 	background-color: white;
-	 	bottom: 0;
-	 	z-index: 7;
-	 	width: 100%;
-	 	text-align: center;
-	 	padding-top: 30px;
-	 	padding-bottom: 30px;
- 	}
+		position: fixed;
+		background-color: white;
+		bottom: 0;
+		z-index: 7;
+		width: 100%;
+		text-align: center;
+		padding-top: 30px;
+		padding-bottom: 30px;
+	}
 	.zoomI{
 		height: 500px;
 		overflow: scroll;
@@ -116,49 +122,54 @@
 			height: 1000px;
 		}
 	}
+	.container.messaging {
+		padding-top: 20px;
+	}
 	#vipOverlay{
 		display: none;
 	}
 	.slider-for, .slider-mobile-for{
 		width: 100%;
 		img {
-	    object-fit: cover;
-	    height: 28em;
+			object-fit: contain;
+			height: 28em;
 			margin: 0 auto;
 		}
 	}
 	.slick-dots {
 		bottom: 0;
-		position: absolute;
-    list-style: none;
-    text-align: center;
-    padding: 0;
-    margin: 0;
-    width: 100%;
 		margin-bottom: 0.2em;
 		margin-left: -0.5em;
+		position: absolute;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		text-align: center;
+		width: 100%;
+		z-index: 1;
+
 		li {
-		  position: relative;
-		  display: inline-block;
-		  height: 10px;
-		  width: 10px;
-		  margin: 0;
+			position: relative;
+			display: inline-block;
+			height: 10px;
+			width: 10px;
+			margin: 0;
 			margin-left: 10px;
-		  padding: 0;
-		  cursor: pointer;
+			padding: 0;
+			cursor: pointer;
 			button {
-		    border: 2px solid #fff;
+				border: 2px solid #fff;
 				border-radius: 10px;
-		    background: transparent;
-		    display: block;
-		    height: 10px;
-		    width: 10px;
-		    outline: none;
-		    line-height: 0px;
-		    font-size: 0px;
-		    color: transparent;
-		    padding: 5px;
-		    cursor: pointer;
+				background: transparent;
+				display: block;
+				height: 10px;
+				width: 10px;
+				outline: none;
+				line-height: 0px;
+				font-size: 0px;
+				color: transparent;
+				padding: 5px;
+				cursor: pointer;
 				&:before{
 					font-size: 20px;
 					border-radius: 15px;
@@ -184,6 +195,22 @@
 		font-weight: bold;
 		color: gray;
 	}
+	.content-slick-carousel-img {
+		height: 70px;
+		position: relative;
+		overflow: hidden;
+		outline: 0;
+		cursor: pointer;
+		margin: 10px 5px 5px 5px;
+		border: 1px solid $vivaBlack;
+		&.slick-slide {
+			.slick-carousel{
+				width: 100%;
+				height: 70px;
+				object-fit: cover;
+			}
+		}
+	}
 	.slider-for{
 		cursor: pointer;
 	}
@@ -195,31 +222,68 @@
 		}
 	}
 	#vipOverlay {
+		.slider-nav{
+			&.col1{
+				width: 13.1%;
+			}
+			&.col2{
+				width: 26.3%;
+			}
+			&.col3{
+				width:40%;
+			}
+			&.col4{
+				width: 52%;
+			}
+		}
+		.carousel-images {
+	    width: 65%;
+		}
 		.slick-slide{
 			img{
-				object-fit: cover;
+				object-fit: contain;
 				height: 28em;
 				margin: 0 auto;
 			}
 		}
+		.content-slick-carousel-img {
+			height: 70px;
+			position: relative;
+			overflow: hidden;
+			outline: 0;
+			cursor: pointer;
+			margin: 10px 5px 5px 5px;
+			border: 1px solid $vivaBlack;
+			&.slick-slide {
+				.slick-carousel{
+					max-width: inherit;
+					height: 70px ;
+					object-fit: cover;
+				}
+			}
+			&.slick-current{
+				border: 3px solid $postAdOrange;
+				margin: 8px 3px 3px 3px;
+			}
+		}
 		.title {
 			margin-top: -5px;
-	    margin-bottom: 20px;
+			margin-bottom: 20px;
 			width: 90%;
 		}
-		.price{
+		.price-update {
 			margin-top: -15px;
 			margin-bottom: 5px;
 		}
 	}
 	.slick-prev, .slick-next{
 		display: block;
-	  position: absolute;
-	  width: 20px;
-	  height: 20px;
-	  border: none;
-	  color: transparent;
-	  outline: 0;
+		position: absolute;
+		width: 20px;
+		height: 20px;
+		border: none;
+		color: transparent;
+		outline: 0;
 		top: 28px;
 		cursor: pointer;
 		&:before{
@@ -247,21 +311,21 @@
 		}
 		.slick-current{
 			border: 3px solid $postAdOrange;
-			margin: 3px;
+			margin: 8px 3px 3px 3px;
 		}
-	}
-	.modal > .modal-container {
-		max-width: 40em;
 	}
 	#vipOverlay{
 		.counter{
-			bottom: 7.5em;
-    	right: 2em;
+			bottom: 8.5em;
+			right: 2em;
+		}
+		.modal-container {
+			max-width: 40em;
 		}
 		&> .modal-container > .modal-close-section{
 			position: absolute;
-	    top: 10px;
-	    right: 16px;
+			top: 10px;
+			right: 16px;
 			cursor: default;
 			.modal-closearea{
 				display: inline-block;
@@ -270,7 +334,7 @@
 		}
 	}
 	.counter{
-		bottom: 6em;
+		bottom: 7em;
 	}
 	.icon-Zoom{
 		top: 417px;
@@ -281,7 +345,7 @@
 	.slider-mobile-for{
 		width: 100%;
 		img {
-			object-fit: cover;
+			object-fit: contain;
 			height: 320px;
 			margin: 0 auto;
 		}

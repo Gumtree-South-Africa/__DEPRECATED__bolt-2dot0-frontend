@@ -136,12 +136,70 @@ let setupPageTest = (templateName, templateModel, locale) => {
 let mockGoogleLocationApi = () => {
 	registerMockAjax("https://maps.googleapis.com/maps/api/js?key=AIzaSyB8Bl9yJHqPve3b9b4KdBo3ISqdlM8RDhs&libraries=places&language=");
 	registerMockAjax("https://maps.googleapis.com/maps/api/js?v=3&client=gme-marktplaats&channel=bt_mx&libraries=places&language=");
+	registerMockAjax("https://maps.googleapis.com/maps/api/js?key=AIzaSyB8Bl9yJHqPve3b9b4KdBo3ISqdlM8RDhs&libraries=places");
+	registerMockAjax("https://maps.googleapis.com/maps/api/js?key=AIzaSyB8Bl9yJHqPve3b9b4KdBo3ISqdlM8RDhs&libraries=places&callback=formMap.configMap");
+
+
 	window.google = window.google || {};
 	window.google.maps = window.google.maps || {};
 	window.google.maps.places = window.google.maps.places || {};
 	window.google.maps.places.Autocomplete = window.google.maps.places.Autocomplete || function() {}; // no op
 	window.google.maps.event = window.google.maps.event || {};
 	window.google.maps.event.addListener = window.google.maps.addListener || function() {}; // no op
+
+	window.google = {
+		maps: {
+			Circle: function() {
+				return {
+					setMap: function() { }
+				};
+			},
+			LatLng: function() { },
+			Map: function() {
+				return {
+					fitBounds: function() { },
+					getCenter: function() {
+						return { 
+							lat: function() { 
+								return 19.3883633;
+							}, 
+							lng: function() { 
+								return -99.1744249; 
+							} 
+						};
+					 },
+					setCenter: function() { },
+					setOptions: function() { },
+					setZoom: function() { },
+					addListener: function() {
+						return {
+							dragend: function() {}
+						};
+					},
+				};
+			},
+			addListener: function() {},
+			Marker: function() { 
+				return {
+					setMap: function() {}
+				};
+			},
+			places: {
+				Autocomplete: function() {
+					return {
+						bindTo: function() { },
+						addListener: function() {
+						 },
+						setBounds: function() { }
+					};
+				}
+			},
+			event: {
+				addListener: function() {},
+				trigger: function() {}
+			},
+		}
+	};
 };
 
 let mockWebshim = () => {

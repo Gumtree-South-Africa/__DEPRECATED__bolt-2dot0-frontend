@@ -76,6 +76,7 @@
 	},
 	"content" : {
 		"homepage" : {
+			"topCategories": [],
 			"topHomePageAdBanner"	: true,
 			"homepageBanners"		: null,
 			"bingMeta"				: null,
