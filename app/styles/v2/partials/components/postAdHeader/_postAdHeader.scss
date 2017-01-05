@@ -21,6 +21,12 @@ $photo-switcher-width: 30%;
 		font-size: 10pt;
 	}
 
+	.post-ad-content {
+		// Same with body
+		max-width: 1024px;
+		margin: auto;
+	}
+
 	.header-back {
 		float: left;
 		margin-left: 6px;
