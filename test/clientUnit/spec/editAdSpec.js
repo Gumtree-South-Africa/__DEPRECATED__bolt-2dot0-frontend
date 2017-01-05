@@ -193,9 +193,11 @@ describe('Edit Ad', () => {
 			expect(google.maps.Map).toHaveBeenCalled();
 		});
 
-		it("initialize and disable geolocate", () => {
-			let checkGeolocation = $testArea.find('#checkGeolocation');
-			expect(checkGeolocation.hasClass('toggle-input')).toBeTruthy('should be display checkbox control');
+		it("uses proximity location or precise location ", () => {
+			let switchRangeMarker = $testArea.find('#switchRangeMarker');
+			expect(switchRangeMarker.hasClass('toggle-input')).toBeTruthy('should be display checkbox control');
+			switchRangeMarker.trigger("click");
+			expect(switchRangeMarker.hasClass('toggle-input')).toBeTruthy('should be display checkbox control');
 		});
 	});
 

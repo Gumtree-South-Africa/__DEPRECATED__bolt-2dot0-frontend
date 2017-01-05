@@ -126,6 +126,7 @@ function verticalCategoryValidate(ad, categoryAllData, verticalCategories, bapiH
 }
 
 module.exports = {
+	fetchCategoryHierarchy,
 	getVerticalCategory,
 	verticalCategoryValidate
 };
