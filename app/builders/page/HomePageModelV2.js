@@ -103,6 +103,7 @@ class HomePageModelV2 {
 		modelData.dataLayer = data['common'].dataLayer || {};
 		modelData.seo = data['seo'] || {};
 		modelData.showTopBanner = showTopBanner;
+		modelData.banners = this.bapiConfigData.banners && this.bapiConfigData.banners.HomepageV2;
 		modelData.safetyTips.safetyLink = this.bapiConfigData.content.homepageV2.safetyLink;
 		modelData.isLocationMobile = deviceDetection.isMobile();
 

@@ -91,6 +91,8 @@
 		},
 		"availableAdFeatures" : ["BUMP_UP", "URGENT_AD", "HIGHLIGHT_AD", "TOP_AD", "HOME_PAGE_GALLERY", "SRP_GALLERY", "WEB_SITE_URL"]
 	},
+	"banners": {
+	},
 	"content": {
   		"homepageV2" : {
 			"safetyLink": "https://help.gumtree.co.za/pkb_Home?l=en_US&c=PublicKB:Gumtree_basics",

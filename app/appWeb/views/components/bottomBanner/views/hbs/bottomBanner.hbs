@@ -2,6 +2,6 @@
 
 {{#partial "googleBannerAdsBottom_Script"}}
     {{#unlessMobile this.device}}
-		BOLT.displayBanner( $.extend( {pos:"1",slotDim: [[728,90],[970,250],[970,90]], slotId : 'ad-bottombanner', adPos: 'LB_1_HP'},bP));
+		BOLT.displayBanner( $.extend( {pos:"{{#if this.banners.bottom.pos}}{{this.banner.bottom.pos}}{{else}}bottom{{/if}}",slotDim: [[728,90],[970,250],[970,90]], slotId : 'ad-bottombanner' {{#if this.banners.bottom.adPos}}, adPos: '{{this.banners.bottom.adPos}}'{{/if}} },bP));
     {{/unlessMobile}}
 {{/partial}}
