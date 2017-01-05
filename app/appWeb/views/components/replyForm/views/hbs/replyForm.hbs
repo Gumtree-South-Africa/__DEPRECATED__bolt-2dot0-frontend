@@ -40,7 +40,7 @@
             </div>
         {{/if}}
 
-        <form action="/api/ads/reply" method="post" class="main-content">
+        <form action="/api/ads/reply" method="post" class="main-content replyAd">
             <div class="reply-form-content">
                 <div class="login-message-container">
                     <span class="desktop-message">{{i18n "vip.reply.sendMessage"}}</span>
@@ -117,14 +117,43 @@
                     <input name="adId" class="hidden" type="text" value="{{this.advert.adId}}">
                 {{/unless}}
 
-                {{#if this.advert.replyInfo.attachmentEnabled}}
+
                     <div class="viva-labels">{{i18n "vip.reply.attachAFile"}}</div>
                     <label for="file-upload" class="custom-file-upload">
                         {{i18n "vip.reply.browseFiles"}}
                     </label>
                     <input name="fileName" id="file-upload" type="file"/>
                     <span class="file-text">{{i18n "vip.reply.pdfOrDoc"}}</span>
-                {{/if}}
+                
+
+
+                  <div id="file-attach" data-msg-filesizeexceeded='{{i18n "reply.ad.attachment.error.filesizeexceed"}}'>
+                    <div class='heading'>
+                      <span class="label">{{i18n "vip.reply.attachmentUpload.title"}}</span>
+                      <span class="help">{{i18n "vip.reply.attachmentUpload.help"}}</span>
+                    </div>
+
+                    <div id='attached-file'>
+                                <span id="paperclipspan" class="icon-paperclip"></span>
+                                <span class='spinner'><span class='icon-spinner'></span>{{i18n "reply.ad.attachment.uploading"}} </span>
+                      <span class="label" id="filenamelabel"></span>
+                    </div>
+                    <div id="errorMessageSpan"></div>
+                    <a href="#" class='remove'>[{{i18n "reply.ad.attachment.remove"}}]</a>
+
+                            <div id='upload-container'>
+                      <input type="button" class="dummy-datafile-button" value='{{i18n "reply.ad.attachment.choose-file"}}'/>
+                      <input type="file" name="datafile" id="datafile"style="display:block;"/>
+                            </div>
+                        </div>
+
+
+
+                    <label class="checkbox-label">
+                      <input type="checkbox" name="{{attributeName}}" {{#if checked}}checked="checked"{{/if}} />
+                      <span class="label">{{i18n "vip.reply.send.me.copy.email"}}</span>
+                    </label>
+
 
                 <div class="send-message-container">
                     <input class="viva-checkbox" name="isSendMeCopyEmail" checked="checked" type="checkbox">
@@ -150,7 +179,7 @@
                 </div>
             {{/if}}
 
-            <form action="/api/ads/reply" method="post" class="main-content">
+            <form action="/api/ads/reply" method="post" class="main-content replyAd">
                 <div class="reply-form-content">
                     <div class="login-message-container">
                         <span class="desktop-message">{{i18n "vip.reply.sendMessage"}}</span>

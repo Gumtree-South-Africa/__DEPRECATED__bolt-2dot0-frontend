@@ -85,6 +85,7 @@ app/appWeb/views/components/smartMobileBanner/js/smartMobileBanner.js
 app/appWeb/serviceWorkers/service-worker-registration.js
 app/appWeb/views/components/modal/js/locationModal.js
 app/appWeb/views/components/locationSelection/js/locationSelection.js
+app/appWeb/views/components/replyForm/js/adReplyFileAttachment.js
 
 server/services/category.js
 server/services/configservice.js
@@ -121,4 +122,3 @@ node_modules
 public/js/precompTemplates.js
 
 test/**/coverage/**/*.js
-

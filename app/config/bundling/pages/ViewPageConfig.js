@@ -20,7 +20,8 @@ module.exports = {
 			"PageMain": "app/appWeb/views/templates/pages/viewPage/js/viewPage.js",
 			"AdDetails": "app/appWeb/views/components/adDetails/js/adDetails.js",
 			"ViewPageGallery": "app/appWeb/views/components/viewPageGallery/js/viewPageGallery.js",
-			"replyForm": "app/appWeb/views/components/replyForm/js/replyForm.js",
+			"ReplyForm": "app/appWeb/views/components/replyForm/js/replyForm.js",
+			"AdReplyFileAttachment": "app/appWeb/views/components/replyForm/js/adReplyFileAttachment.js",
 			"TopSearches": "app/appWeb/views/components/topSearches/js/topSearches.js",
 			"FlagAd": "app/appWeb/views/components/flagAd/js/flagAd.js",
 			"ModalLocation": "app/appWeb/views/components/modal/js/locationModal.js"
