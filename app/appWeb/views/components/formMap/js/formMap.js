@@ -8,7 +8,7 @@ class FormMap {
 		this.HtmlMap = $("#map");
 		this.HtmlAutocomplete = $("#autocompleteTextBox");
 		this.errorMessageMap = $(".errorMessageMap");
-		this.HtmlEnableLocation = $("#checkGeolocation");
+		this.HtmlSwitchRangeMarker = $("#switchRangeMarker");
 		this.HtmlSetLocation = $("#setCurrentLocationButton");
 		this.googleMap = $(".form-map-component").data("google-map");
 		this.locationAd = $(".form-map-component").data("location-ad");
@@ -20,6 +20,8 @@ class FormMap {
 		this.validationCoordinates = {};
 		this.useGeolocation;
 		this.meters = this.googleMap.sizeRadio;
+		this.typeMark = this.HtmlSwitchRangeMarker[0].checked;
+		this.enableComponents = false;
 		this.icons = this.googleMap.icons;
 		this.validateCountry = (coordinates) => {
 			return new Promise(function(success, reject) {
@@ -46,6 +48,7 @@ class FormMap {
 									window.formMap.errorMessageMap.html(window.formMap.googleMap.errorMessage).show();
 								}
 							}
+							window.formMap.enableComponents = true;
 						}
 						success(false);
 					} catch (ex) {
@@ -56,36 +59,7 @@ class FormMap {
 		};
 	}
 
-	expandViewportToFitPlace(map, place) {
-		if (place.geometry.viewport) {
-			map.fitBounds(place.geometry.viewport);
-			map.setZoom(this.zoom);
-		} else {
-			map.setCenter(place.geometry.location);
-			map.setZoom(this.zoom);
-		}
-	}
-
-	initAutocomplete() {
-		this.autocomplete = new google.maps.places.Autocomplete(this.HtmlAutocomplete[0], { types: ['geocode'] });
-		this.autocomplete.bindTo('bounds', this.map);
-
-		let that = this.autocomplete;
-		this.autocomplete.addListener('place_changed', () => {
-			let place = that.getPlace();
-			this.HtmlAutocomplete.removeClass("error");
-			if (!place.geometry) {
-				this.HtmlAutocomplete.addClass("error");
-				this.HtmlAutocomplete.blur();
-				return;
-			} else {
-				this.HtmlAutocomplete.blur();
-				this.expandViewportToFitPlace(this.map, place);
-				this.setLocation();
-			}
-		});
-	}
-
+	// setup first configuration of google maps plugin
 	configMap() {
 		let tempzoom = this.locationAd ? this.zoom : 4;
 		this.map = new google.maps.Map(this.HtmlMap[0], {
@@ -104,17 +78,38 @@ class FormMap {
 		});
 	}
 
-	setLocation() {
-		this.removeAllMarker();
-		this.removeAllRanges();
-		this.addRange(this.meters);
+	// function enables autocomplete
+	initAutocomplete() {
+		this.autocomplete = new google.maps.places.Autocomplete(this.HtmlAutocomplete[0], { types: ['geocode'] });
+		this.autocomplete.bindTo('bounds', this.map);
+
+		let that = this.autocomplete;
+		this.autocomplete.addListener('place_changed', () => {
+			let place = that.getPlace();
+			this.HtmlAutocomplete.removeClass("error");
+			if (!place.geometry) {
+				this.HtmlAutocomplete.addClass("error");
+				this.HtmlAutocomplete.blur();
+				return;
+			} else {
+				this.HtmlAutocomplete.blur();
+				this.expandViewportToFitPlace(this.map, place);
+				this.setMark();
+			}
+		});
 	}
 
-	getLocation() {
-		let value = this.HtmlEnableLocation[0].checked;
-		this.geolocate(value);
+	// function set position on map from place selected on autocomplete search
+	expandViewportToFitPlace(map, place) {
+		if (place.geometry.viewport) {
+			map.fitBounds(place.geometry.viewport);
+		} else {
+			map.setCenter(place.geometry.location);
+		}
+		map.setZoom(this.zoom);
 	}
 
+	// get coords of current position of map
 	getPosition() {
 		let cords = this.map.getCenter();
 		let pos = {
@@ -124,16 +119,16 @@ class FormMap {
 		return pos;
 	}
 
+	// ser the current position of user
 	setCurrentPosition() {
 		let latLng = new google.maps.LatLng(this.position.lat, this.position.lng);
 		this.map.setCenter(latLng);
 		this.map.setZoom(this.zoom);
-		this.removeAllMarker();
-		this.removeAllRanges();
-		this.addRange(this.meters);
 		this.HtmlAutocomplete.val();
+		this.setMark();
 	}
 
+	// enable gps of current user vis HTML5
 	geolocate() {
 		try	{
 			if (navigator.geolocation) {
@@ -155,8 +150,9 @@ class FormMap {
 		}
 	}
 
-	addRange(meters) {
-		let center = this.map.getCenter();
+	// add range in map 
+	_addRange(meters) {
+		let center = this.map.position ? this.map.position : this.map.getCenter();
 		let tempRange = new google.maps.Circle({
 			strokeColor: '#FF9800',
 			strokeOpacity: 0.8,
@@ -170,45 +166,34 @@ class FormMap {
 		googleRanges.push(tempRange);
 	}
 
-	removeAllRanges() {
+	// remove all ranges in map
+	_removeAllRanges() {
 		for (let i = 0; i < googleRanges.length; i++) {
 			googleRanges[i].setMap(null);
 		}
 		googleRanges = new Array();
 	}
 
-	addMarker() {
-		let center = this.map.getCenter();
-		let label = googleMarker.length === 0 ? "Current Location" : "Fake Location";
-		let icon = googleMarker.length === 0 ? this.icons.current : this.icons.fakeAd;
-
+	// add marker in map
+	_addMarker() {
+		let center = this.map.position ? this.map.position : this.map.getCenter();
 		let tempMarker = new google.maps.Marker({
 			position: center,
-			title: label,
-			icon: icon
-		});
-
-		tempMarker.setMap(this.map);
-		googleMarker.push(tempMarker);
-	}
-
-	addMarkerCustom(lat, lng) {
-		let center = { lat: lat, lng: lng };
-		let tempMarker = new google.maps.Marker({
-			position: center,
-			title: 'MyLocation'
+			icon: this.icons.fakeAd
 		});
 		tempMarker.setMap(this.map);
 		googleMarker.push(tempMarker);
 	}
 
-	removeAllMarker() {
+	// remove all markers in map
+	_removeAllMarker() {
 		for (let i = 0; i < googleMarker.length; i++) {
 			googleMarker[i].setMap(null);
 		}
 		googleMarker = new Array();
 	}
 
+	// validate and set position into map
 	setPosition() {
 		this.validateCountry(this.locationAd).then(function(result) {
 			window.formMap.position = result || window.formMap.googleMap.defaultLocation;
@@ -220,6 +205,23 @@ class FormMap {
 			}
 		});
 	}
+
+	// uses proximity location or precise location 
+	setMark() {
+		if(!this.enableComponents) {
+			return;
+		}
+		this._removeAllMarker();
+		this._removeAllRanges();
+		this.typeMark= this.HtmlSwitchRangeMarker.is(":checked");
+		if(this.typeMark) {
+			// if is true set a marker in map (use precise location)
+			this._addMarker();
+		} else {
+			// if is false set a range (use aproximate location)
+			this._addRange(this.meters);
+		}
+	}
 }
 
 let initialize = () => {
@@ -229,6 +231,17 @@ let initialize = () => {
 	window.formMap.setPosition();
 	window.googleRanges = googleRanges;
 	window.googleMarker = googleMarker;
+
+	// Events setup
+	$("#setCurrentLocationButton").click(() => {
+		window.formMap.setPosition();
+	});
+
+	$('#switchRangeMarker').change(function() {
+		if(window.formMap.position) {
+			window.formMap.setMark();	
+		}
+    });
 };
 
 module.exports = {
