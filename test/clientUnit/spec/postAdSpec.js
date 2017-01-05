@@ -6,9 +6,9 @@ let ImageHelper = require('app/appWeb/views/components/uploadImage/js/epsUpload.
 let specHelper = require('../helpers/commonSpecHelper.js');
 let loginModalController = require("app/appWeb/views/components/loginModal/js/loginModal.js");
 //let spinnerModalController = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
+let postAdFormMainDetailsController = require("app/appWeb/views/components/postAdFormMainDetails/js/postAdFormMainDetails.js");
 let formMapController =require('app/appWeb/views/components/formMap/js/formMap.js');
 let formMapMock = require('../mockData/formMapMock.json');
-let postAdFormMainDetailsController = require("app/appWeb/views/components/postAdFormMainDetails/js/postAdFormMainDetails.js");
 
 let mockEpsResponse = 'VERSION:2;http://i.ebayimg.sandbox.ebay.com/00/s/ODAwWDM4Ng==/z/iYgAAOSwGvNXo388/$_1.JPG?set_id=8800005007';
 let imageHelper = new ImageHelper.EpsUpload({
@@ -256,7 +256,7 @@ describe('Post Ad', () => {
 	describe("formMap", () => {
 		let $testArea;
 		window.getUrlParameter(true);
-		
+
 		beforeEach(() => {
 			specHelper.mockGoogleLocationApi();
 			specHelper.mockWebshim();
@@ -272,6 +272,10 @@ describe('Post Ad', () => {
 				zoom: this.zoom,
 				disableDefaultUI: true,
 			});
+
+			let $googleMap = $testArea.find('.form-map-component');
+			expect($googleMap.hasClass('form-map-component')).toBeTruthy('should display formMap component');
+
 			expect(google.maps.Map).toHaveBeenCalled();
 		});
 
@@ -284,7 +288,7 @@ describe('Post Ad', () => {
 			expect(window.formMap.setMark).toHaveBeenCalled();
 		});
 
-		it("uses precise location ", () => {		
+		it("uses precise location ", () => {
 			window.formMap.icons = {
 				fakeAd: "../../fakead.svg",
 				current: "../../current.svg"
@@ -293,39 +297,39 @@ describe('Post Ad', () => {
 			window.formMap.enableComponents = true;
 			switchRangeMarker.prop('checked', 'checked');
 			window.formMap.setMark();
-			
+
 			expect(window.formMap.typeMark).toBeTruthy();
 		});
 
-		it("uses aproximate location ", () => {		
+		it("uses aproximate location ", () => {
 			window.formMap.setMark();
 			expect(window.formMap.typeMark).toBeFalsy();
 		});
 
-		it("test geolocation ", () => {		
+		it("test geolocation ", () => {
 			window.formMap.geolocate();
 			// send undefined object, the razon is the navigator object cannot be mocked, already that is protected.
-			expect(window.formMap.position).toBeUndefined();		
-			// mock position 
+			expect(window.formMap.position).toBeUndefined();
+			// mock position
 			window.formMap.position = { lat: 19.3883633, lng: -99.1744249 };
 			window.formMap.setCurrentPosition();
-			expect(window.formMap.map).toBeDefined();	
+			expect(window.formMap.map).toBeDefined();
 		});
 
-		it("get position of current view on map ", () => {		
+		it("get position of current view on map ", () => {
 			let position = window.formMap.getPosition();
-			expect(position).toBeDefined();		
+			expect(position).toBeDefined();
 		});
 
-		it("autocomplete test", () => {		
+		it("autocomplete test", () => {
 			window.formMap.initAutocomplete();
-			expect(window.formMap.HtmlAutocomplete).toBeDefined();		
+			expect(window.formMap.HtmlAutocomplete).toBeDefined();
 		});
 
-		it("events in formMap ", () => {		
+		it("events in formMap ", () => {
 			let switchRangeMarker = $testArea.find('#switchRangeMarker');
 			window.formMap.position = { lat: 19.3883633, lng: -99.1744249 };
-			switchRangeMarker.prop('checked', 'checked');		
+			switchRangeMarker.prop('checked', 'checked');
 			window.formMap.setMark();
 			expect(window.formMap.typeMark).toBeFalsy();
 

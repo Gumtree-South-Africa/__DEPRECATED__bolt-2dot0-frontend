@@ -57,11 +57,13 @@
 		"errorMessage" : "No podemos usar tu ubicación actual. Añádela manualmente",
 		"sizeRadio": 1000,
 		"zoom": 16,
+		"zoomMax": 12,
 		"accuracy": 5,
 		"defaultLocation": {
 			"lat": 23.49125085380051,
 			"lng": -100.15682835625
-		}
+		}, 
+		"secondsSetposition": 2
 	},
 	"footer" : {
 		"cookieNotice"						: "https://ayuda.vivanuncios.com.mx/MX/articles/es/KB_Article/cookie-policy-mx",

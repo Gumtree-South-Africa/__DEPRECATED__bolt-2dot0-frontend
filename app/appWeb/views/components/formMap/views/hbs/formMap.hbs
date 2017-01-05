@@ -1,8 +1,13 @@
-<div class="form-map-component" data-google-map="{{this.googleMap}}" data-location-ad="{{this.locationLatLong}}">
+<div id="form-map-overlay" class="form-map-overlay"></div>
+<div id="form-map-component" class="form-map-component" data-google-map="{{this.googleMap}}" data-location-ad="{{this.locationLatLong}}">
+    <div id="close-modal" class="close-modal">
+        <span class="close-text">{{i18n "feature.legend.close"}}</span>
+        <img class="close-icon-small" src="/public/icons/close.svg" alt="">
+    </div>
     <div class="title">{{i18n "postad.location.title"}} <span class="errorMessageMap"></span></div>
     <div class="map-form">
         <div class="search-location">
-            <input id='autocompleteTextBox' class='textbox' type='text' placeholder='{{i18n "postad.location.placeholder"}}'></input>
+            <input id='autocompleteTextBox' class='textbox' type='search' placeholder='{{i18n "postad.location.placeholder"}}'></input>
             <button id="setCurrentLocationButton" class="setLocationButton" type="button">
                 <img src="{{this.urlIcons}}location-arrow.svg" alt="">
                  {{i18n "postad.location.setLocation"}}</button>
@@ -10,6 +15,9 @@
         <div class="map-component">
             <div class="map-plugin">
                 <div id="map"></div>
+                <div id="map-overlay">
+                    {{i18n "postad.location.searching"}}
+                </div>
                 <div class="google-maps">
                     {{#if this.googleMapAuth.googleMapKey}}
                 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&key={{this.googleMapAuth.googleMapKey}}&channel=bt_mx&libraries=places&language={{this.lang}}"></script>
@@ -21,6 +29,9 @@
         </div>
         <div class="location-settings">
             <div class="description">
+                <button id="confirmLocationButton" class="confirmLocationButton" type="button">
+                 {{i18n "postad.location.confirmButton"}}</button>
+
                 <div class="only-desktop">
                     {{i18n "postad.location.instructions.desktop"}}
                 </div>
