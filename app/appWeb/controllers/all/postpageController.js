@@ -111,6 +111,11 @@ router.use('/', (req, res, next) => {
 		modelData.termsOfUseLink = res.locals.config.bapiConfigData.footer.termOfUse;
 		modelData.privacyPolicyLink = res.locals.config.bapiConfigData.footer.privacyPolicy;
 		modelData.cookieNoticeLink = res.locals.config.bapiConfigData.footer.cookieNotice;
+		modelData.urlIcons = modelData.footer.baseIconUrl + res.locals.config.locale + '/';
+		res.locals.config.bapiConfigData.googleMapConfiguration.icons = {
+			current: modelData.urlIcons + 'location-current.svg',
+			fakeAd: modelData.urlIcons + 'location-marker.svg'
+		};
 		modelData.googleMap = JSON.stringify(res.locals.config.bapiConfigData.googleMapConfiguration);
 		pageControllerUtil.postController(req, res, next, 'postAd/views/hbs/postAd_', modelData);
 	}).fail((err) => {

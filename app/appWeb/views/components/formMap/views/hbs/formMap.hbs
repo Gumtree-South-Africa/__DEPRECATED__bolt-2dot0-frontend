@@ -4,11 +4,10 @@
         <div class="search-location">
             <input id='autocompleteTextBox' class='textbox' type='text' placeholder='{{i18n "postad.location.placeholder"}}'></input>
             <button id="setCurrentLocationButton" class="setLocationButton" type="button">
-                <img src="/public/icons/map/location-arrow.svg" alt="">
+                <img src="{{this.urlIcons}}location-arrow.svg" alt="">
                  {{i18n "postad.location.setLocation"}}</button>
         </div>
         <div class="map-component">
-
             <div class="map-plugin">
                 <div id="map"></div>
                 <div class="google-maps">
