@@ -85,6 +85,8 @@ class PhotoContainerMobile extends PhotoContainer {
 			}
 			this.clickFileInput();
 		});
+		// Makesure first slide is display
+		this.swiper.slideTo(0, 1000, false);
 	}
 	/**
 	 * Display spinner when uploading image

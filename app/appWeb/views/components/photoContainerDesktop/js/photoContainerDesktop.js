@@ -76,7 +76,7 @@ class PhotoContainerDesktop extends PhotoContainer {
 			this.$initialPhoto.parent().append(newDiv);
 			newDiv=newDiv.clone();
 		}
-		$(this.$photoSwitcher).toggleClass("photo-container-start", false);
+		//$(this.$photoSwitcher).toggleClass("photo-container-start", false);
 		$(this.$photoSwitcher.find(".drag-reorder")).toggleClass("hidden", false);
 		this.hasUpdatedLayout = true;
 	}

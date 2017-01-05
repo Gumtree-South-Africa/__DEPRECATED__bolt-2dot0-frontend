@@ -25,7 +25,7 @@ $labelMargin: 8%;
 	.info-tips {
 		width: 70%;
 		text-align: center;
-		margin: 10% auto;
+		margin: 0% auto;
 		font-size: 20px;
 		color: $postAdTextGray;
 	}
@@ -246,8 +246,8 @@ $labelMargin: 8%;
 
 	.photo-container-start {
 		margin: 20px auto 0 auto;
-		width: 300px; // Align with banner asset
-		height: 300px;
+		width: 320px; // Align with banner asset
+		height: 320px;
 	}
 
 	.two-step {
