@@ -593,7 +593,7 @@ class ViewPageModel {
 
 					// Category Attributes
 					data.categoryCurrentHierarchy = [];
-					//this.getCategoryHierarchy(modelData.categoryAll, Number(data.categoryId), data.categoryCurrentHierarchy);
+					this.getCategoryHierarchy(modelData.categoryAll, Number(data.categoryId), data.categoryCurrentHierarchy);
 
 					return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
 						_.extend(data, attributeModel.processCustomAttributesList(attributes, data));
