@@ -4,6 +4,8 @@
 .header-wrapper {
 	border-bottom-color: $headerBorderColor;
 	&.header-distraction-free {
+		text-align: center;
+
 		&.header-logo-fallback {
 			.headerV2 {
 				.logo {
