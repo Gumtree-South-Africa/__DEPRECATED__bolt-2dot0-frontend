@@ -16,7 +16,6 @@ let versionconfig = require('./server/middlewares/version-config');
 let eventLoopMonitor = require('./server/utils/monitor-event-loop');
 let monitorAgent = require('./server/utils/monitor/monitor-agent');
 let error = require('./modules/error');
-
 let consoleStamp = require('console-stamp');
 
 let cacheBapiData = require('./server/services/cache/cache-server-startup');
