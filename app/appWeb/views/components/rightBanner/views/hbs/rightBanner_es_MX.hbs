@@ -1,5 +1,6 @@
 <div id='div-gpt-ad-1318934199048-0' class="home_rghtbanner"></div>
 
 {{#partial "googleBannerAdsRightV2_Script"}}
-	BOLT.displayBanner( $.extend( {pos:"top",slotDim: [[300, 250],[336 ,280]], slotId : 'div-gpt-ad-1318934199048-0'},bP));
+	{{!-- if condition is added to keep backward compatibility --}}
+	BOLT.displayBanner( $.extend( {pos:"{{#if this.banners.right.pos}}{{this.banners.right.pos}}{{else}}top{{/if}}",slotDim: [[300, 250],[336 ,280]], slotId : 'div-gpt-ad-1318934199048-0' {{#if this.banners.right.adPos}}, adPos: '{{this.banners.right.adPos}}'{{/if}} },bP));
 {{/partial}}

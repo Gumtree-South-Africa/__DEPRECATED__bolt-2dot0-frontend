@@ -76,6 +76,8 @@
 		},
 		"availableAdFeatures" 				: ["BUMP_UP", "URGENT_AD", "HIGHLIGHT_AD", "TOP_AD", "HOME_PAGE_GALLERY", "SRP_GALLERY"]
 	},
+	"banners": {
+	},
 	"content" : {
 		"homepage" : {
 			"topCategories": [],

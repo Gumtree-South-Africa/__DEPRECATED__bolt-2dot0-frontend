@@ -132,6 +132,14 @@ module.exports.boltSupertest = (route, host, method) => {
 		`${endpoints.updateConfig}?_forceExample=true&_statusCode=200`,
 		'test/serverUnit/mockData/api/v1/EmptySuccess.json');
 
+	// Mock for endpoint used by cache refresh
+	registerMockEndpoint(
+		`${endpoints.trendingSearch}?_forceExample=true&_statusCode=200&offset=0&limit=48&minResults=48&withPicsOnly=true`,
+		'test/serverUnit/mockData/api/v1/TrendingCard.json');
+	registerMockEndpoint(
+		`${endpoints.recentActivities}?_forceExample=true&_statusCode=200&limit=50`,
+		'test/serverUnit/mockData/api/v1/recentActivity.json');
+
 	let fakeEndpoint = (postData, options) => {
 		if (options === null) {
 			options = postData;
