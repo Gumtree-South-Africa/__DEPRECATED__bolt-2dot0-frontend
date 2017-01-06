@@ -4,6 +4,16 @@
 .header-wrapper {
 	border-bottom-color: $headerBorderColor;
 	&.header-distraction-free {
+		&.header-logo-fallback {
+			.headerV2 {
+				.logo {
+					background-size: contain;
+					height: 51px;
+					width: 50px;
+				}
+			}
+		}
+
 		.headerV2 {
 			padding-bottom: 10px;
 		}
