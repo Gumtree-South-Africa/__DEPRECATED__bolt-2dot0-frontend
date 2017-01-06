@@ -100,7 +100,7 @@ class replyForm {
 				}
 			});
 		});
-
+ 
 		$('.welcome-wrapper .email').on('click', () => {
 			this._messageSeller();
 		});

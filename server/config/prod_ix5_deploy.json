@@ -43,7 +43,7 @@
 			"port": 443,
 			"parameters": null,
 			"protocol": "https:",
-			"timeout": 2000,
+			"timeout": 10000,
 			"useBasedomainsuffix": false,
 			"useProxy": true
 		},

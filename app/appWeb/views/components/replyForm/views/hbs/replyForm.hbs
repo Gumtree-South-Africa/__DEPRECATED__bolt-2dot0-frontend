@@ -117,14 +117,14 @@
                     <input name="adId" class="hidden" type="text" value="{{this.advert.adId}}">
                 {{/unless}}
 
-
+<!--
                     <div class="viva-labels">{{i18n "vip.reply.attachAFile"}}</div>
                     <label for="file-upload" class="custom-file-upload">
                         {{i18n "vip.reply.browseFiles"}}
                     </label>
                     <input name="fileName" id="file-upload" type="file"/>
-                    <span class="file-text">{{i18n "vip.reply.pdfOrDoc"}}</span>
-                
+                    <span class="file-text">{{i18n "vip.reply.pdfOrDoc"}}</span> -->
+
 
 
                   <div id="file-attach" data-msg-filesizeexceeded='{{i18n "reply.ad.attachment.error.filesizeexceed"}}'>
@@ -142,8 +142,14 @@
                     <a href="#" class='remove'>[{{i18n "reply.ad.attachment.remove"}}]</a>
 
                             <div id='upload-container'>
-                      <input type="button" class="dummy-datafile-button" value='{{i18n "reply.ad.attachment.choose-file"}}'/>
-                      <input type="file" name="datafile" id="datafile"style="display:block;"/>
+                              <div class="viva-labels">{{i18n "vip.reply.attachAFile"}}</div>
+                              <label for="file-upload" class="custom-file-upload">
+                                  {{i18n "vip.reply.browseFiles"}}
+                              </label>
+                              <input name="datafile" id="datafile" type="file"/>
+                              <span class="file-text">{{i18n "vip.reply.pdfOrDoc"}}</span>
+                                <!-- <input type="button" class="dummy-datafile-button" value='{{i18n "reply.ad.attachment.choose-file"}}'/>
+                                <input type="file" name="datafile" id="datafile" style="display:block;"/> -->
                             </div>
                         </div>
 

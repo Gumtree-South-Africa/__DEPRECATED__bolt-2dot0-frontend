@@ -1,3 +1,5 @@
+'use strict';
+
 //
 // AdReplyFileAttachment.js
 // @author machung

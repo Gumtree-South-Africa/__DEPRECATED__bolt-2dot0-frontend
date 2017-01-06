@@ -149,4 +149,3 @@ RESTCall.prototype = {
 
 // Export our 'class'
 module.exports = new RESTCall();
-
