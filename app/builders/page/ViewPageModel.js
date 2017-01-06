@@ -189,6 +189,33 @@ class ViewPageModel {
 		});
 	}
 
+	configureDisplayForAttributes(inputObj, seoUrls) {
+		let attr = JSON.parse(JSON.stringify(inputObj));
+		attr.capsName = attr.name.toUpperCase();
+
+		// seoUrl link
+		if (typeof seoUrls !== 'undefined') {
+			_.each(seoUrls.makeModel, (makeModel) => {
+				if (makeModel.text === attr.value) {
+					if (attr.attrName === 'AlmVehicleBrand') {
+						let makeModelElt = makeModel._links.find( (elt) => {
+							return elt.rel === "search";
+						});
+						attr.seoUrl = makeModelElt.href;
+					}
+					if (attr.attrName === 'AlmVehicleModel') {
+						let makeModelElt = makeModel._links.find( (elt) => {
+							return elt.rel === "search";
+						});
+						attr.seoUrl = makeModelElt.href;
+					}
+				}
+			});
+		}
+
+		return attr;
+	}
+
 	/**
 	 * Order Ad Attributes
 	 * @param inputArr
@@ -208,36 +235,15 @@ class ViewPageModel {
 				}
 			}
 		}
-		let newArr = [];
 
+		let newArr = [];
 		if (inputCategoryIdArr.length > 0) {
 			for (let i = 0; i < inputCategoryIdArr.length; i++) {
 				let arrIndex = _.findIndex(inputArr, {
 					attrName: inputCategoryIdArr[i]
 				});
 				if(arrIndex !== -1) {
-					let attr = JSON.parse(JSON.stringify(inputArr[arrIndex]));
-					// capsName
-					attr.capsName = attr.name.toUpperCase();
-					// seoUrl link
-					if (typeof seoUrls !== 'undefined') {
-						_.each(seoUrls.makeModel, (makeModel) => {
-							if (makeModel.text === attr.value) {
-								if (attr.attrName === 'AlmVehicleBrand') {
-									let makeModelElt = makeModel._links.find( (elt) => {
-										return elt.rel === "search";
-									});
-									attr.seoUrl = makeModelElt.href;
-								}
-								if (attr.attrName === 'AlmVehicleModel') {
-									let makeModelElt = makeModel._links.find( (elt) => {
-										return elt.rel === "search";
-									});
-									attr.seoUrl = makeModelElt.href;
-								}
-							}
-						});
-					}
+					let attr = this.configureDisplayForAttributes(inputArr[arrIndex], seoUrls);
 					newArr.push(attr);
 				} else {
 					continue;
@@ -245,7 +251,11 @@ class ViewPageModel {
 			}
 			return newArr;
 		} else {
-			return inputArr;
+			for (let i = 0; i < inputArr.length; i++) {
+				let attr = this.configureDisplayForAttributes(inputArr[i], seoUrls);
+				newArr.push(attr);
+			}
+			return newArr;
 		}
 	}
 
@@ -512,14 +522,16 @@ class ViewPageModel {
 					// Manipulate Ad Data
 
 					// seoVipUrl
-					let seoVipElt = data._links.find((elt) => {
-						return elt.rel === "seoVipUrl";
-					});
-					let dataSeoVipUrl = seoVipElt.href;
-					data.seoVipUrl = dataSeoVipUrl;
+					if (typeof data._links !== 'undefined') {
+						let seoVipElt = data._links.find((elt) => {
+							return elt.rel === "seoVipUrl";
+						});
+						let dataSeoVipUrl = seoVipElt.href;
+						data.seoVipUrl = dataSeoVipUrl;
 
-					// loginRedirectUrl
-					data.loginRedirectUrl = "/login.html?redirect=" + dataSeoVipUrl;
+						// loginRedirectUrl
+						data.loginRedirectUrl = "/login.html?redirect=" + dataSeoVipUrl;
+					}
 
 					// Date
 					data.postedDate = moment(data.postedDate).fromNow();

@@ -9,11 +9,13 @@
         {{#if this.trendingCard}}
             {{#if this.locationlatlong.localizedName}}
                 {{> (dynamic "card") card=this.trendingCard
+                    isH1=true
                     i18nTitle="homepage.popularSearches.popularIn"
                     i18nSubtitle="homepage.popularSearches.marker"
                     i18nSubtitle2=this.locationlatlong.localizedName }}
             {{else}}
                 {{> (dynamic "card") card=this.trendingCard
+                    isH1=true
                     i18nTitle="homepage.popularSearches.popular"
                     i18nSubtitle="homepage.popularSearches.marker"
                     i18nSubtitle2="homepage.popularSearches.promptLocation" }}
