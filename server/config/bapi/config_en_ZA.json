@@ -47,7 +47,8 @@
 		},
 		"seoDeepLinkingBaseUrlAndroid" 	: "android-app://com.ebay.gumtree.za/gumtreeza/",
 		"locationDropdownLevel"			: 2,
-		"categoryDropdownLevel"			: 2
+		"categoryDropdownLevel"			: 2,
+		"useV1Logo": true
 	},
 	"footer": {
 		"about"				: "https://help.gumtree.co.za/articles/KB_Article/About-Us?vgroup1=PublicKB&vcategory1=PublicKB%3AGumtree_Basics&vcategory2=About_us",
@@ -90,6 +91,8 @@
 			"googlePlusUrl"	: "https://plus.google.com/+gumtreecoza"
 		},
 		"availableAdFeatures" : ["BUMP_UP", "URGENT_AD", "HIGHLIGHT_AD", "TOP_AD", "HOME_PAGE_GALLERY", "SRP_GALLERY", "WEB_SITE_URL"]
+	},
+	"banners": {
 	},
 	"content": {
   		"homepageV2" : {
@@ -362,10 +365,10 @@
 		},
 		"VIP": {
 			"desktop": {
-				"models": ["advert", "keywords", "locationlatlong", "safetyTips", "seo"]
+				"models": ["advert", "keywords", "locationlatlong", "seo"]
 			},
 			"mobile": {
-				"models": ["advert", "keywords", "locationlatlong", "safetyTips", "seo"]
+				"models": ["advert", "keywords", "locationlatlong", "seo"]
 			}
 		}
 	}

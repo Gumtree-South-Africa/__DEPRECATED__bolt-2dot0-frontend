@@ -39,19 +39,9 @@ class replyForm {
 				};
 			})(), true);
 
-			$('#vip-send-button').on('click', () => {
-				this.validateForm();
-			});
-
-			$(".main-content").submit((e) => {
+			$('#vip-send-button').on('click', (e) => {
 				e.preventDefault();
 				if(this.validateForm()) {
-					let message = $(".message-box-area").val();
-					if($(".canned-checkbox").prop("checked") && message !== '') {
-						message = $(".canned-message").html() + "\n" + message;
-					}
-					$('.message-box-area').val(this.cleanupValue(message));
-					$('.name-box-area').val(this.cleanupValue($('.name-box-area').val()));
 					$(".main-content")[0].submit();
 				}
 			});
@@ -154,9 +144,14 @@ class replyForm {
 
 		// beggin validate fields
 		let message = $(".message-box-area").val();
-		if($(".canned-checkbox").prop("checked") && message === '') {
-			$(".message-box-area").val($(".canned-message").html());
+		let finalMesage = '';
+		$('.canned-checkbox:checkbox:checked').each(function() {
+			finalMesage = finalMesage + $(this).data('id') + '\n';
+		});
+		if (message !== '') {
+			finalMesage = message + '\n' + finalMesage;
 		}
+		$('.message-box-area').val(this.cleanupValue(finalMesage));
 
 		if($(".message-box-area").val() === '') {
 			$('.fe-message-validation').removeClass('hide');
@@ -170,6 +165,7 @@ class replyForm {
 		} else {
 			$('.fe-name-validation').addClass('hide');
 		}
+		$('.name-box-area').val(this.cleanupValue($('.name-box-area').val()));
 
 		let email = $('.email-box-area').val();
 		if (!this.validateEmail(email)) {
