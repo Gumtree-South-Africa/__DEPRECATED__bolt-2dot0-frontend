@@ -47,7 +47,8 @@
 		},
 		"seoDeepLinkingBaseUrlAndroid" 	: "android-app://com.ebay.gumtree.za/gumtreeza/",
 		"locationDropdownLevel"			: 2,
-		"categoryDropdownLevel"			: 2
+		"categoryDropdownLevel"			: 2,
+		"useV1Logo": true
 	},
 	"footer": {
 		"about"				: "https://help.gumtree.co.za/articles/KB_Article/About-Us?vgroup1=PublicKB&vcategory1=PublicKB%3AGumtree_Basics&vcategory2=About_us",
