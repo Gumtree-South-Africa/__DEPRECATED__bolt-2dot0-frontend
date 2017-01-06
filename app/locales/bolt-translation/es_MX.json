@@ -1391,10 +1391,10 @@
 		},
 		"sitemap": {
 			"aboutus": {
-				"aboutus": "ACERCA DE",
+				"aboutus": "ACERCA DE NOSOTROS",
 				"aboutviva": "Acerca de Vivanuncios",
 				"vivablog": "Blog de Vivanuncios",
-				"vivabusiness": "NEGOCIOS",
+				"vivabusiness": "PARA NEGOCIOS",
 				"rules": "Reglas para publicar anuncios",
 				"staysafe": "Mantente seguro",
                 "staysafelink": "https://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad",
@@ -1425,7 +1425,7 @@
 				"priceIndex": "Precios de inmuebles"
 			},
 			"tips": {
-				"tips": "AYUDA",
+				"tips": "CONSEJOS Y AYUDA",
 				"help": "Páginas de ayuda",
 				"helplink": "https://ayuda.vivanuncios.com.mx",
 				"onlinesafety": "Seguridad en internet",

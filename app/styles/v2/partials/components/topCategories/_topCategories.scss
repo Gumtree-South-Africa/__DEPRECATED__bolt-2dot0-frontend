@@ -1,11 +1,2 @@
-.seo-wrapper {
-  .top-categories-header {
-  }
-}
-.view-more-categories {
-  margin-top: 20px;
-  cursor: pointer;
-}
-
-@include from-breakpoint($medium-break){
-}
+//Please do duplicate code here!
+// topSearches / topLocations and topCategories should be seo.scss

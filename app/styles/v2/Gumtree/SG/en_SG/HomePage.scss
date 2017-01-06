@@ -11,21 +11,28 @@
 @import  "../../../partials/components/tileGrid/tileGrid";
 @import  "../../../partials/components/adTile/adTile";
 @import  "../../../partials/card";
-@import  "../../../partials/components/searchbarV2/searchbarV2";
 @import  "../../../partials/components/header/header";
-@import  "../../../partials/components/footerV2/footerV2";
 @import  "../../../partials/components/dfpBanner/dfpBanner";
 @import  "../../../partials/components/hamburgerMenu/hamburgerMenu";
+
+//SEO
+@import  "../../../partials/components/topCategories/topCategories";
 @import  "../../../partials/components/topSearches/topSearches";
 @import  "../../../partials/components/topLocations/topLocations";
+
+//FOOTER LEGACY
+@import  "../../../partials/components/footerV2/footerV2";
+
+//SEARCHBAR LEGACY
+@import  "../../../partials/components/searchbarV2/searchbarV2";
+//Searchbar Gumtree
+@import  "../../partials/components/searchbarv2/searchbarv2";
+
+
 @import  "../../../../v1/partials/main/emptyStateMessages.scss";
 
 @import  "../../partials/components/header/header";
 @import  "../../partials/components/profileMenu/profileMenu";
 @import  "../../partials/components/modal/modal";
-@import  "../../partials/components/searchbarv2/searchbarv2";
 @import  "../../partials/components/hamburgerMenu/hamburgerMenu";
 
-@import  "../../partials/components/footer/footer.scss";
-@import  "../../partials/components/footer/seo.scss";
-@import  "../partials/components/seo.scss";

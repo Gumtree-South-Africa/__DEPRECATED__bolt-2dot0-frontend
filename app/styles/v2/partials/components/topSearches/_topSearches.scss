@@ -1,12 +1,12 @@
 .seo-background{
-	background-color: $vivaBlack;
+	background-color: $footerSeoBackgroundColor;
 }
 .seo-wrapper {
-	background-color: $vivaBlack;
+	background-color: $footerSeoBackgroundColor;
 	font-size: 12px;
 	padding-top: 20px;
 	padding-bottom: 20px;
-	color: $vivaGray9;
+	color: $footerMainTextColor;
 
     h1{
 	font: $h1;
@@ -24,6 +24,16 @@
 	}
 }
 
+.seo-line {
+	border-bottom: 1px solid $seoLineColor;
+	width: 99%;
+	margin-top: -1px;
+}
+
+.thick-underline {
+	border-bottom: 3px solid $seoLineColor;
+	padding-bottom: 4px;
+}
 .top-headers {
 	cursor: pointer;
     display: inline-block;
@@ -32,16 +42,16 @@
 }
 
 .view-more-searches, .view-more-categories, .view-more-locations {
+	margin-top: 20px;
+	cursor: pointer;
+	text-align: center;
+
 	span {
 		text-decoration: underline;
 	}
 	.no-underline {
 		text-decoration: none;
 	}
-	margin-top: 20px;
-
-	cursor: pointer;
-	text-align: center;
 }
 
 .hide {
@@ -59,8 +69,11 @@
 
 .top-content {
 	margin-top: 12px;
+	cursor: pointer;
 	.top-links {
 		text-decoration: none;
+		color: $footerMainTextColor;
+
 	}
 }
 
@@ -129,11 +142,11 @@
 			&.container-width-3 {
 				width: calc(33.33333% - 20px);
 				&:first-of-type {
-					padding-left: 20px;
+					padding-left: 15px;
 					width: calc(33% - 30px);
 				}
 				&:last-of-type {
-					padding-right: 20px;
+					padding-right: 15px;
 					width: calc(33% - 30px);
 				}
 			}

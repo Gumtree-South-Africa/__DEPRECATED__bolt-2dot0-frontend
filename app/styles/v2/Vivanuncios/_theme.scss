@@ -7,6 +7,9 @@
 
 $container-width: 73em;
 
+$bodyFont: Lato;    // attach this to body element
+$bodyFontSecondary: Lato;    // attach this to body element
+
 // Headlines
 $viva-h1: bold 1.5em Lato;      // 24px
 $viva-h2: normal 1.5em Lato;    // 24px
@@ -236,9 +239,20 @@ $empty-message: $vivaBlue;
 $link-view-more: $vivaYellow;
 $adPropertyValue: $vivaOtherBlack;
 
+//Footer
+$footerMainBackgroundColor: black;
+$footerMainTextColor: $vivaWhite;
+
+//Footer Seo Background section
+$footerSeoBackgroundColor: $vivaBlack;
+$footerMainTextColor: $vivaGray9;
+$seoLineColor: $seo-bordercolor;
+
 // Footer buttons
 $footerContactButtonBackgroundColor: $vivaOrange;
 $footerContactButtonColor: $vivaWhite;
+
+$footerDividerLineColor: gray;
 
 //carousel-images
 $border-color-thumbs: $vivaBlack;

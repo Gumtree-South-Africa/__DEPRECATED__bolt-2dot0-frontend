@@ -18,11 +18,11 @@ let _toggleCategory = (e) => {
 
 	if ($(e.currentTarget).find('.menu-items').hasClass('hide')) {
 		$(e.currentTarget).find('.chevron').css({
-			'transform': 'rotate(90deg)'
+			'transform': 'rotate(270deg)'
 		});
 	} else {
 		$(e.currentTarget).find('.chevron').css({
-			'transform': 'rotate(0deg)'
+			'transform': 'rotate(90deg)'
 		});
 	}
 

@@ -1,29 +1,14 @@
+//Please do duplicate code here!
+// topSearches / topLocations and topCategories should be seo.scss
+
 .top-locations-header {
 	&:first-child {
 		margin-left: 0px;
 	}
 }
 
-.seo-line {
-	border-bottom: 1px solid #fafafa;
-	width: 99%;
-	margin-top: -1px;
-}
-
-.top-content {
-	cursor: pointer;
-	.top-links {
-		color: #fafafa;
-	}
-}
-
 .top-headers-text {
 	padding-bottom: 5px;
-}
-
-.thick-underline {
-	border-bottom: 3px solid #fafafa;
-	padding-bottom: 4px;
 }
 
 @include from-breakpoint($medium-break) {
