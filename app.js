@@ -17,6 +17,8 @@ let eventLoopMonitor = require('./server/utils/monitor-event-loop');
 let monitorAgent = require('./server/utils/monitor/monitor-agent');
 let error = require('./modules/error');
 
+let consoleStamp = require('console-stamp');
+
 let cacheBapiData = require('./server/services/cache/cache-server-startup');
 
 // config
@@ -108,6 +110,7 @@ let createSiteApps = () => {
 // Event Loop Monitoring
 eventLoopMonitor();
 monitorAgent.startMonitoring();
+consoleStamp(console,'[dd/mm/yyyy HH:MM:ss.l]');
 
 module.exports = app;
 module.exports.createSiteApps = createSiteApps;
