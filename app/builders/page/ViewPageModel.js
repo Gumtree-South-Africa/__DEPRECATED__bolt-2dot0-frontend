@@ -11,7 +11,6 @@ let AttributeModel = require(cwd + '/app/builders/common/AttributeModel.js');
 let KeywordModel= require(cwd + '/app/builders/common/KeywordModel');
 let LocationModel = require(cwd + '/app/builders/common/LocationModel');
 let SeoModel = require(cwd + '/app/builders/common/SeoModel');
-let SafetyTipsModel = require(cwd + '/app/builders/common/SafetyTipsModel');
 let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 let StringUtils = require(cwd + '/app/utils/StringUtils');
 let displayAttributesConfig = require(cwd + '/app/config/ui/displayAttributesConfig.json');
@@ -392,8 +391,6 @@ class ViewPageModel {
 
 		modelData.footer = data.common.footer || {};
 
-		modelData.safetyTips.safetyLink = this.bapiConfigData.content.homepageV2.safetyLink;
-
 		modelData.seo = data['seo'] || {};
 		if (!_.isEmpty(modelData.seo)) {
 			if (typeof modelData.seo.pageTitle !== 'undefined') {
@@ -441,7 +438,6 @@ class ViewPageModel {
 		let attributeModel = new AttributeModel(modelData.bapiHeaders);
 		let keywordModel = (new KeywordModel(modelData.bapiHeaders, this.bapiConfigData.content.vip.defaultKeywordsCount)).getModelBuilder(this.adId);
 		let locationModel = new LocationModel(modelData.bapiHeaders, 1);
-		let safetyTipsModel = new SafetyTipsModel(this.req, this.res);
 		let seo = new SeoModel(modelData.bapiHeaders);
 
 		moment.locale(modelData.lang);
@@ -653,10 +649,6 @@ class ViewPageModel {
 				});
 			};
 		}
-
-		this.dataPromiseFunctionMap.safetyTips = () => {
-			return safetyTipsModel.getSafetyTips();
-		};
 
 		this.dataPromiseFunctionMap.seo = () => {
 			return seo.getVIPSeoInfo();

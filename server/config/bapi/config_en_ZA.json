@@ -364,10 +364,10 @@
 		},
 		"VIP": {
 			"desktop": {
-				"models": ["advert", "keywords", "locationlatlong", "safetyTips", "seo"]
+				"models": ["advert", "keywords", "locationlatlong", "seo"]
 			},
 			"mobile": {
-				"models": ["advert", "keywords", "locationlatlong", "safetyTips", "seo"]
+				"models": ["advert", "keywords", "locationlatlong", "seo"]
 			}
 		}
 	}
