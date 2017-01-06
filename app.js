@@ -17,6 +17,9 @@ let eventLoopMonitor = require('./server/utils/monitor-event-loop');
 let monitorAgent = require('./server/utils/monitor/monitor-agent');
 let error = require('./modules/error');
 
+//jslint: ignore
+require('console-stamp')(console,'[dd/mm/yyyy HH:MM:ss.l]');
+
 let cacheBapiData = require('./server/services/cache/cache-server-startup');
 
 // config
