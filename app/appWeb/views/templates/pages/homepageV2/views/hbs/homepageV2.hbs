@@ -107,7 +107,8 @@
             {{/ifMobile}}
 			dc_ref: window.location.href,
 			kw: $('input[name=q]').val() || "no category",
-			ptype: 'home'
+			ptype: 'home',
+			login: '{{#if this.header.isUserLoggedIn}}Y{{else}}N{{/if}}'
 		};
 
         {{#if this.showTopBanner}}
