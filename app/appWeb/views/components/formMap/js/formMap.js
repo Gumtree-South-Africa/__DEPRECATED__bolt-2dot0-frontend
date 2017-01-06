@@ -109,12 +109,7 @@ class FormMap {
 						$("#confirmLocationButton").prop('disabled', false);
 						this.stateError = false;
 					} else {
-						window.formMap._removeAllMarker();
-						window.formMap._removeAllRanges();
-						$('#autocompleteTextBox').val("");
-						$('#autocompleteTextBox').val(window.formMap.googleMap.errorMessage);
-						$('#autocompleteTextBox').addClass('error');
-						this.stateError = true;
+						this.showErrorError();
 					}
 				});
 			}, this.secondsSetposition * 500);
@@ -132,6 +127,7 @@ class FormMap {
 		/* istanbul ignore next */
 		this.autocomplete.addListener('place_changed', () => {
 			let place = that.getPlace();
+			this.stateError = false;
 			this.HtmlAutocomplete.removeClass("error");
 			if (!place.geometry) {
 				this.HtmlAutocomplete.addClass("error");
@@ -140,9 +136,16 @@ class FormMap {
 			} else {
 				this.HtmlAutocomplete.blur();
 				this.expandViewportToFitPlace(this.map, place);
-				// this.setCurrentPosition(this.zoom, this.getPosition());
-				this.position = this.getPosition();
-				this.setMark(this.getPosition());
+				this.validateCountry(this.getPosition()).then((result) => {
+					if (result) {
+						this.position = result;
+						this.setMark(this.getPosition());
+						$("#confirmLocationButton").prop('disabled', false);
+						this.stateError = false;
+					} else {
+						this.showErrorError();
+					}
+				});
 			}
 		});
 	}
@@ -193,9 +196,14 @@ class FormMap {
 						if (result) {
 							this.position = result;
 							this.setCurrentPosition(this.zoom);
+						} else {
+							this.showErrorError();
 						}
 						$("#map-overlay").removeClass('active');
 					});
+				}, () => {
+					$("#map-overlay").removeClass('active');
+					 this.showErrorError();
 				});
 			} else {
 				$("#map-overlay").removeClass('active');
@@ -311,6 +319,17 @@ class FormMap {
 		google.maps.event.trigger(this.map, "resize");
 		this.map.setCenter(this.position);
 	}
+
+	showErrorError() {
+		window.formMap._removeAllMarker();
+		window.formMap._removeAllRanges();
+		$('#autocompleteTextBox').val("");
+		$('#autocompleteTextBox').val(window.formMap.googleMap.errorMessage);
+		$('#autocompleteTextBox').addClass('error');
+		this.stateError = true;
+	}
+
+	
 }
 
 let initialize = () => {
